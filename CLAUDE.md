@@ -37,3 +37,17 @@ Fix every error, and fix the warnings your change introduced.
 - Title: `<job id>: <job title>`.
 - Description: what you did; the coverage lines for the course; every judgment call a reviewer should check, listed first (edges you were unsure of, items you split or merged, anchors you couldn't find); "Noticed, not changed".
 - Move the job file to `jobs/done/` only when the PR is merged. In your PR, set it to `status: in-review` with `pr:` set.
+
+## Agent skills
+
+### Issue tracker
+
+Issues live in GitHub Issues for `emanuelelongoni/arche` (via the `gh` CLI). See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+Default vocabulary: `needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`. See `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Single-context: one `GLOSSARY.md` and `docs/adr/` at the repo root. See `docs/agents/domain.md`.

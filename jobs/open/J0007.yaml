@@ -1,7 +1,8 @@
 id: J0007
 kind: anchor
 title: First Lean build of the anchors and lake-manifest.json
-status: open
+status: claimed
+claimed_by: claude-code (Opus 5.5)
 priority: 1
 scope: {}
 instructions: >-

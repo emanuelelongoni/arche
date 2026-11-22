@@ -19,11 +19,19 @@ SCHEMA = ROOT / "schema"
 
 @dataclass
 class Graph:
+    root: Path = GRAPH  # the graph directory: courses/, nodes/, viewpoints/
     courses: dict[str, dict] = field(default_factory=dict)
     nodes: dict[str, dict] = field(default_factory=dict)
     viewpoints: dict[str, dict] = field(default_factory=dict)
     files: dict[str, Path] = field(default_factory=dict)  # "kind:id" -> path
     load_errors: list[str] = field(default_factory=list)
+
+    def display(self, path: Path) -> str:
+        """A file path as messages show it: relative to the directory that holds the graph."""
+        try:
+            return str(path.relative_to(self.root.parent))
+        except ValueError:
+            return str(path)
 
     # ---- choice groups -------------------------------------------------
     def choice_groups(self) -> dict[str, list[tuple[str, dict]]]:
@@ -144,39 +152,41 @@ def topo_order(dag: dict[str, list[str]], subset: set[str]) -> list[str]:
     return out
 
 
-def _load_yaml(path: Path, errors: list[str]):
+def _load_yaml(g: Graph, path: Path):
     try:
         with path.open(encoding="utf-8") as f:
             return yaml.safe_load(f)
     except yaml.YAMLError as e:
-        errors.append(f"{path.relative_to(ROOT)}: YAML error: {e}")
+        g.load_errors.append(f"{g.display(path)}: YAML error: {e}")
         return None
 
 
 def load(root: Path = GRAPH) -> Graph:
-    g = Graph()
+    """Load the graph under `root` (default: graph/ in this repo)."""
+    g = Graph(root=Path(root).resolve())
+    root = g.root
     for p in sorted((root / "courses").glob("*.yaml")):
-        d = _load_yaml(p, g.load_errors)
+        d = _load_yaml(g, p)
         if isinstance(d, dict) and "id" in d:
             if d["id"] in g.courses:
-                g.load_errors.append(f"duplicate course id {d['id']} in {p.relative_to(ROOT)}")
+                g.load_errors.append(f"duplicate course id {d['id']} in {g.display(p)}")
             g.courses[d["id"]] = d
             g.files[f"course:{d['id']}"] = p
     for p in sorted((root / "viewpoints").glob("*.yaml")):
-        d = _load_yaml(p, g.load_errors)
+        d = _load_yaml(g, p)
         if isinstance(d, dict) and "id" in d:
             g.viewpoints[d["id"]] = d
             g.files[f"viewpoint:{d['id']}"] = p
     for p in sorted((root / "nodes").rglob("*.yaml")):
-        d = _load_yaml(p, g.load_errors)
+        d = _load_yaml(g, p)
         if isinstance(d, dict) and "id" in d:
             if d["id"] in g.nodes:
                 g.load_errors.append(
-                    f"duplicate node id {d['id']}: {g.files['node:' + d['id']].relative_to(ROOT)} and {p.relative_to(ROOT)}")
+                    f"duplicate node id {d['id']}: {g.display(g.files['node:' + d['id']])} and {g.display(p)}")
             g.nodes[d["id"]] = d
             g.files[f"node:{d['id']}"] = p
         elif d is not None:
-            g.load_errors.append(f"{p.relative_to(ROOT)}: not a node (no id)")
+            g.load_errors.append(f"{g.display(p)}: not a node (no id)")
     return g
 
 

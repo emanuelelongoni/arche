@@ -5,12 +5,17 @@ Usage:
   python3 tools/validate.py              # errors and warnings; exit 1 on errors
   python3 tools/validate.py --report     # also print coverage and viewpoint reports
   python3 tools/validate.py --report-md out.md   # write the report as Markdown
+  python3 tools/validate.py --root /tmp/copy/graph   # check another graph directory
+
+--root names a graph directory (courses/, nodes/, viewpoints/; default graph/ in
+this repo). Jobs are read from the jobs/ directory beside it, if there is one.
 """
 from __future__ import annotations
 
 import argparse
 import sys
 from collections import defaultdict
+from pathlib import Path
 
 from jsonschema import Draft202012Validator
 
@@ -33,7 +38,7 @@ class Log:
 
 def rel(g: G.Graph, key: str) -> str:
     p = g.files.get(key)
-    return str(p.relative_to(G.ROOT)) if p else key
+    return g.display(p) if p else key
 
 
 def check_schemas(g: G.Graph, log: Log):
@@ -49,9 +54,9 @@ def check_jobs(g: G.Graph, log: Log):
     import yaml
     v = Draft202012Validator(G.load_schema("job"))
     jobs = {}
-    for p in sorted((G.ROOT / "jobs").glob("*/J*.yaml")):
+    for p in sorted((g.root.parent / "jobs").glob("*/J*.yaml")):
         d = yaml.safe_load(p.read_text(encoding="utf-8")) or {}
-        where = str(p.relative_to(G.ROOT))
+        where = g.display(p)
         for e in v.iter_errors(d):
             log.err(f"{where}: schema: {'/'.join(map(str, e.path)) or '(root)'}: {e.message}")
         if d.get("id") and p.stem != d["id"]:
@@ -254,9 +259,11 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--report", action="store_true")
     ap.add_argument("--report-md")
+    ap.add_argument("--root", type=Path, default=G.GRAPH,
+                    help="graph directory to check (default: graph/ in this repo)")
     args = ap.parse_args()
 
-    g = G.load()
+    g = G.load(args.root)
     log = Log()
     for e in g.load_errors:
         log.err(e)

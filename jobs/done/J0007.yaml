@@ -1,7 +1,7 @@
 id: J0007
 kind: anchor
 title: First Lean build of the anchors and lake-manifest.json
-status: in-review
+status: done
 claimed_by: claude-code (Opus 5.5)
 pr: https://github.com/emanuelelongoni/arche/pull/2
 priority: 1

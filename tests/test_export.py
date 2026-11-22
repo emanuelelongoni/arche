@@ -30,6 +30,14 @@ def test_choice_groups_are_resolved_per_viewpoint(data):
                     ("ts.compact-universally-closed", "product-compactness-route:universally-closed")}
 
 
+def test_each_viewpoint_names_its_pick_in_every_group(data):
+    picks = {vp: v["picks"] for vp, v in data["viewpoints"].items()}
+    assert picks["classical"] == {"constructions-route": "concrete", "product-compactness-route": "tube-lemma",
+                                  "up-framing": "elementwise"}
+    assert picks["npov"] == {"constructions-route": "initial-final",
+                             "product-compactness-route": "universally-closed", "up-framing": "categorical"}
+
+
 def test_nodes_only_in_npov_are_active_only_there(data):
     assert "ct.categories" in data["viewpoints"]["npov"]["active"]
     assert "ct.categories" not in data["viewpoints"]["classical"]["active"]

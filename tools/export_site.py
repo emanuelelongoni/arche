@@ -64,7 +64,8 @@ def export(g: G.Graph) -> dict:
                 if e["node"] in act:  # the same DAG tools/plan.py builds
                     dag[nid].append(e["node"])
                     edges.append({"from": nid, "to": e["node"], "reason": e["reason"], "via": e["via"]})
-        viewpoints[vp] = {**v, "active": sorted(act), "dag": dag, "edges": edges}
+        picks = {group: g.picked(vp, group) for group in sorted(g.choice_groups())}
+        viewpoints[vp] = {**v, "active": sorted(act), "picks": picks, "dag": dag, "edges": edges}
     return {
         "builtFrom": provenance(),
         "courses": courses,

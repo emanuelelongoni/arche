@@ -1,0 +1,185 @@
+---
+import Base from "../../layouts/Base.astro";
+import NodeLink from "../../components/NodeLink.astro";
+import {
+  KIND_LABEL, VERIFICATION_TEXT, activeIn, anchorUrl, courseUrl, data, node, shortTitle, viewpointIds,
+  type ChoiceGroup,
+} from "../../lib/data";
+
+export function getStaticPaths() {
+  return Object.keys(data.nodes).map((id) => ({ params: { id } }));
+}
+
+const id = Astro.params.id!;
+const n = node(id);
+const course = data.courses[n.course];
+const section = course.sections?.find((s) => s.n === n.section);
+const exists = activeIn(id);
+const everywhere = exists.length === viewpointIds.length;
+const vpList = (vps: string[]) => vps.map(shortTitle).join(" and ");
+
+const plain = (n.requires ?? []).filter((r): r is { node: string; reason: string } => "node" in r);
+const groups = (n.requires ?? []).filter((r): r is ChoiceGroup => "choice" in r);
+const pickedBy = (group: string, option: string) => viewpointIds.filter((vp) => data.viewpoints[vp].picks[group] === option);
+
+// Topics that require this one, and in which viewpoints.
+const dependents = new Map<string, string[]>();
+for (const vp of exists) {
+  for (const e of data.viewpoints[vp].edges) {
+    if (e.to === id) dependents.set(e.from, [...(dependents.get(e.from) ?? []), vp]);
+  }
+}
+const dependentList = [...dependents.entries()].sort(([a], [b]) => data.nodes[a].title.localeCompare(data.nodes[b].title));
+
+const illuminatedBy = Object.values(data.nodes).flatMap((m) =>
+  (m.illuminates ?? []).filter((e) => e.node === id).map((e) => ({ from: m.id, note: e.note })),
+);
+const coverItems = (n.covers ?? []).map((key) => {
+  const [cid, item] = key.split("#");
+  const c = data.courses[cid];
+  const text = c.sections?.flatMap((s) => s.items).find((it) => it.id === item)?.text ?? item;
+  return { cid, item, text, courseTitle: c.title };
+});
+const anchors = n.anchors ?? [];
+const kps = n.knowledge_points ?? [];
+const notes = Object.entries(n.lesson_notes ?? {});
+---
+<Base title={n.title} description={`${KIND_LABEL[n.kind] ?? n.kind} in ${course.title}: ${n.title}.`}>
+  <p class="meta">
+    {KIND_LABEL[n.kind] ?? n.kind} · <a href={courseUrl(course.id)}>{course.title}</a>{section && <>, §{section.n} {section.title}</>}
+  </p>
+  <h1>{n.title}</h1>
+  <dl class="facts">
+    <dt>Status</dt><dd><span class:list={["badge", n.status]}>{n.status}</span></dd>
+    {n.minutes && <><dt>Time</dt><dd>about {n.minutes} minutes</dd></>}
+    {n.verification && <><dt>Lean</dt><dd>{VERIFICATION_TEXT[n.verification]}</dd></>}
+    {!everywhere && <><dt>Exists in</dt><dd>the {vpList(exists)} viewpoint only</dd></>}
+  </dl>
+  {n.status === "stub" && (
+    <p class="note">This topic is a stub: a placeholder so other topics can point at it. It hasn't been written yet.</p>
+  )}
+
+  {kps.length > 0 && (
+    <section aria-labelledby="kps">
+      <h2 id="kps">Knowledge points</h2>
+      <ol>{kps.map((k) => <li>{k}</li>)}</ol>
+    </section>
+  )}
+
+  <section aria-labelledby="needs">
+    <h2 id="needs">Prerequisites</h2>
+    {plain.length === 0 && groups.length === 0 && <p>None in the graph.</p>}
+    {plain.length > 0 && (
+      <ul class="edges">
+        {plain.map((e) => <li><NodeLink id={e.node} /><br /><span class="reason">{e.reason}</span></li>)}
+      </ul>
+    )}
+    {groups.map((g) => (
+      <div class="choice">
+        <h3>The viewpoints take different routes here <span class="meta">(choice <code>{g.choice}</code>)</span></h3>
+        {Object.entries(g.options).map(([opt, edges]) => {
+          const by = pickedBy(g.choice, opt);
+          return (
+            <div class="option">
+              <p><strong>{opt}</strong>{opt === g.default && " (default)"}{by.length > 0 ? <>: chosen by {vpList(by)}</> : ": chosen by no viewpoint"}</p>
+              {edges && edges.length > 0 ? (
+                <ul class="edges">{edges.map((e) => <li><NodeLink id={e.node} /><br /><span class="reason">{e.reason}</span></li>)}</ul>
+              ) : (
+                <p class="meta">No extra prerequisite on this route.</p>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    ))}
+  </section>
+
+  {dependentList.length > 0 && (
+    <section aria-labelledby="unlocks">
+      <h2 id="unlocks">Builds towards</h2>
+      <ul>
+        {dependentList.map(([dep, vps]) => (
+          <li><NodeLink id={dep} />{vps.length < exists.length && <span class="meta"> ({vpList(vps)})</span>}</li>
+        ))}
+      </ul>
+    </section>
+  )}
+
+  {(n.encompasses ?? []).length > 0 && (
+    <section aria-labelledby="encompasses">
+      <h2 id="encompasses">Encompasses</h2>
+      <p class="meta">Practising this topic also counts as practice of these, with the given weight.</p>
+      <ul>{n.encompasses!.map((e) => <li><NodeLink id={e.node} /> <span class="meta">(weight {e.weight})</span></li>)}</ul>
+    </section>
+  )}
+
+  {((n.illuminates ?? []).length > 0 || illuminatedBy.length > 0) && (
+    <section aria-labelledby="illuminates">
+      <h2 id="illuminates">Cross-links</h2>
+      {(n.illuminates ?? []).length > 0 && (
+        <>
+          <h3>Illuminates</h3>
+          <ul class="edges">{n.illuminates!.map((e) => <li><NodeLink id={e.node} /><br /><span class="reason">{e.note}</span></li>)}</ul>
+        </>
+      )}
+      {illuminatedBy.length > 0 && (
+        <>
+          <h3>Illuminated by</h3>
+          <ul class="edges">{illuminatedBy.map((e) => <li><NodeLink id={e.from} /><br /><span class="reason">{e.note}</span></li>)}</ul>
+        </>
+      )}
+    </section>
+  )}
+
+  {anchors.length > 0 && (
+    <section aria-labelledby="lean">
+      <h2 id="lean">Lean anchors</h2>
+      <ul>
+        {anchors.map((a) => {
+          const url = anchorUrl(a.decl, a.library);
+          return (
+            <li>
+              {url ? <a href={url}><code>{a.decl}</code></a> : <code>{a.decl}</code>}
+              {a.library && a.library !== "mathlib" && <span class="meta"> ({a.library})</span>}
+              {a.note && <span class="meta"> — {a.note}</span>}
+            </li>
+          );
+        })}
+      </ul>
+      <p class="meta">
+        Checked against Mathlib <code>{data.builtFrom.mathlibRev.slice(0, 7)}</code>. The documentation follows Mathlib's
+        latest version, so a declaration renamed since then may not resolve.
+      </p>
+    </section>
+  )}
+
+  {notes.length > 0 && (
+    <section aria-labelledby="notes">
+      <h2 id="notes">Lesson notes</h2>
+      {notes.map(([vp, text]) => <><h3>{data.viewpoints[vp] ? shortTitle(vp) : vp}</h3><p>{text}</p></>)}
+    </section>
+  )}
+
+  {n.off_platform && (
+    <section aria-labelledby="walk">
+      <h2 id="walk">To think about on a walk</h2>
+      <p class="prompt">{n.off_platform}</p>
+    </section>
+  )}
+
+  {coverItems.length > 0 && (
+    <section aria-labelledby="covers">
+      <h2 id="covers">Syllabus items covered</h2>
+      <ul>{coverItems.map((c) => <li><a href={courseUrl(c.cid, c.item)}>{c.text}</a> <span class="meta">({c.courseTitle})</span></li>)}</ul>
+    </section>
+  )}
+
+  {((n.msc ?? []).length > 0 || (n.sources ?? []).length > 0) && (
+    <p class="meta">
+      {(n.msc ?? []).length > 0 && <>MSC {n.msc!.join(", ")}. </>}
+      {(n.sources ?? []).length > 0 && <>Sources: {n.sources!.join("; ")}.</>}
+    </p>
+  )}
+
+  <p><a href={`/route/#to=${id}`}>Plan a route to this topic →</a></p>
+</Base>

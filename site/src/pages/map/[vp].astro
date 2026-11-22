@@ -1,0 +1,13 @@
+---
+import Base from "../../layouts/Base.astro";
+import MapView from "../../components/MapView.astro";
+import { shortTitle, viewpointIds } from "../../lib/data";
+
+export function getStaticPaths() {
+  return viewpointIds.slice(1).map((vp) => ({ params: { vp } }));
+}
+const { vp } = Astro.params;
+---
+<Base title={`Map (${shortTitle(vp!)})`} wide>
+  <MapView vp={vp!} />
+</Base>

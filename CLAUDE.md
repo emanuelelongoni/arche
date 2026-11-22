@@ -33,6 +33,8 @@ python3 tools/gen_anchor_check.py      # regenerates lean/Arche/Anchors.lean
 
 Fix every error, and fix the warnings your change introduced.
 
+The website (`site/`) is generated from `graph/` at build time. Never edit `site/` to change content; change the graph.
+
 ## The PR
 
 - Title: `<job id>: <job title>`.

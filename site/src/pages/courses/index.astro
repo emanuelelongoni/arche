@@ -1,0 +1,39 @@
+---
+import Base from "../../layouts/Base.astro";
+import { courseUrl, courses } from "../../lib/data";
+
+const rows = courses.map((c) => {
+  const states = Object.values(c.coverage).map((x) => x.state);
+  return {
+    c,
+    items: states.length,
+    covered: states.filter((s) => s === "covered").length,
+    stub: states.filter((s) => s === "stub-only").length,
+  };
+});
+---
+<Base title="Courses">
+  <h1>Courses</h1>
+  <p class="lede">
+    Each course lists what must be covered, taken from its syllabus (currently the Cambridge Schedules
+    2026–27). It says nothing about teaching order: that comes from the prerequisites.
+  </p>
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr><th scope="col">Course</th><th scope="col">Part</th><th scope="col" class="num">Lectures</th><th scope="col" class="num">Items covered</th><th scope="col" class="num">Stub only</th></tr>
+      </thead>
+      <tbody>
+        {rows.map(({ c, items, covered, stub }) => (
+          <tr>
+            <td><a href={courseUrl(c.id)}>{c.title}</a></td>
+            <td>{c.part}{c.term && `, ${c.term}`}</td>
+            <td class="num">{c.lectures ?? "–"}</td>
+            <td class="num">{items ? `${covered} / ${items}` : "–"}</td>
+            <td class="num">{items ? stub : "–"}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</Base>

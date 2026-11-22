@@ -199,16 +199,10 @@ def check_viewpoints(g: G.Graph, log: Log):
         log.warn(f"{rel(g, f'node:{nid}')}: encompasses {t}, which is not an ancestor under {', '.join(vps)}")
 
 
-def coverage_report(g: G.Graph, items: dict[str, int]) -> list[str]:
-    covered: dict[str, set[str]] = defaultdict(set)  # item -> statuses
-    for n in g.nodes.values():
-        for cov in n.get("covers", []) or []:
-            covered[cov].add(n["status"])
+def coverage_report(g: G.Graph) -> list[str]:
+    cov = G.coverage(g)
     lines = ["## Coverage", ""]
-    minutes_by_sec: dict[tuple[str, int], int] = defaultdict(int)
-    for n in g.nodes.values():
-        if n.get("section") and n.get("minutes"):
-            minutes_by_sec[(n["course"], n["section"])] += n["minutes"]
+    minutes_by_sec = G.section_minutes(g)
     for cid, c in sorted(g.courses.items(), key=lambda kv: kv[0]):
         if not c.get("sections"):
             continue
@@ -219,8 +213,8 @@ def coverage_report(g: G.Graph, items: dict[str, int]) -> list[str]:
         lines.append("|---|---|---|---|---|---|---|---|---|")
         for s in c["sections"]:
             ids = [f"{cid}#{it['id']}" for it in s["items"]]
-            d = sum(1 for i in ids if covered[i] & {"draft", "reviewed"})
-            st = sum(1 for i in ids if covered[i] and not covered[i] & {"draft", "reviewed"})
+            d = sum(1 for i in ids if cov[i]["state"] == "covered")
+            st = sum(1 for i in ids if cov[i]["state"] == "stub-only")
             u = len(ids) - d - st
             tot += len(ids); done += d; stub += st
             mins = minutes_by_sec.get((cid, s["n"]), 0)
@@ -255,6 +249,21 @@ def viewpoint_report(g: G.Graph) -> list[str]:
     return lines
 
 
+def run(root: Path = G.GRAPH) -> tuple[G.Graph, Log]:
+    """Load the graph under `root` and run every check."""
+    g = G.load(root)
+    log = Log()
+    for e in g.load_errors:
+        log.err(e)
+    check_schemas(g, log)
+    check_structure(g, log)
+    check_choices(g, log)
+    check_jobs(g, log)
+    if not log.errors:  # graph checks need a structurally sound graph
+        check_viewpoints(g, log)
+    return g, log
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--report", action="store_true")
@@ -263,16 +272,7 @@ def main():
                     help="graph directory to check (default: graph/ in this repo)")
     args = ap.parse_args()
 
-    g = G.load(args.root)
-    log = Log()
-    for e in g.load_errors:
-        log.err(e)
-    check_schemas(g, log)
-    items = check_structure(g, log)
-    check_choices(g, log)
-    check_jobs(g, log)
-    if not log.errors:  # graph checks need a structurally sound graph
-        check_viewpoints(g, log)
+    g, log = run(args.root)
 
     for w in log.warnings:
         print(f"warning: {w}")
@@ -283,7 +283,7 @@ def main():
           f"{len(g.viewpoints)} viewpoints: {len(log.errors)} errors, {len(log.warnings)} warnings")
 
     if args.report or args.report_md:
-        report = coverage_report(g, items) + viewpoint_report(g)
+        report = coverage_report(g) + viewpoint_report(g)
         if args.report:
             print("\n" + "\n".join(report))
         if args.report_md:

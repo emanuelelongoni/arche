@@ -97,6 +97,39 @@ def ancestors(dag: dict[str, list[str]], start: str) -> set[str]:
     return seen
 
 
+def coverage(g: Graph) -> dict[str, dict]:
+    """Every course item "<course>#<item>" -> {"state", "nodes"} (spec/SCHEMA.md §5, Reports).
+
+    state is "covered" (by a draft or reviewed node), "stub-only" or "uncovered";
+    nodes lists the covering node ids, sorted.
+    """
+    by_item: dict[str, list[str]] = defaultdict(list)
+    for nid in sorted(g.nodes):
+        for cov in g.nodes[nid].get("covers", []) or []:
+            by_item[cov].append(nid)
+    out = {}
+    for cid, c in g.courses.items():
+        for s in c.get("sections", []) or []:
+            for it in s.get("items", []) or []:
+                key = f"{cid}#{it['id']}"
+                nodes = by_item.get(key, [])
+                if {g.nodes[n]["status"] for n in nodes} & {"draft", "reviewed"}:
+                    state = "covered"
+                else:
+                    state = "stub-only" if nodes else "uncovered"
+                out[key] = {"state": state, "nodes": nodes}
+    return out
+
+
+def section_minutes(g: Graph) -> dict[tuple[str, int], int]:
+    """(course id, section) -> total estimated minutes of the nodes placed in that section."""
+    out: dict[tuple[str, int], int] = defaultdict(int)
+    for n in g.nodes.values():
+        if n.get("section") and n.get("minutes"):
+            out[(n["course"], n["section"])] += n["minutes"]
+    return dict(out)
+
+
 def find_cycle(dag: dict[str, list[str]]) -> list[str] | None:
     WHITE, GREY, BLACK = 0, 1, 2
     colour = {n: WHITE for n in dag}

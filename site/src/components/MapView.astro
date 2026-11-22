@@ -1,0 +1,119 @@
+---
+import NodeLink from "./NodeLink.astro";
+import { courses, data, mapUrl, nodeUrl, shortTitle, viewpointIds } from "../lib/data";
+import { layoutViewpoint } from "../lib/map-layout";
+
+interface Props {
+  vp: string;
+}
+const { vp } = Astro.props;
+const layout = await layoutViewpoint(vp);
+const v = data.viewpoints[vp];
+const used = new Set(layout.nodes.map((n) => n.course));
+const stubs = layout.nodes.filter((n) => n.stub).length;
+const only = layout.nodes.filter((n) => n.onlyIn).length;
+const PAD_X = 12;
+const label = (n: (typeof layout.nodes)[number]) =>
+  // Starts with the box's visible text (title, then the viewpoint tag), as WCAG 2.5.3 asks.
+  [n.title, n.onlyIn ? `${n.onlyIn.map(shortTitle).join(" ")} only` : null, data.courses[data.nodes[n.id].course].title, n.stub ? "stub" : null]
+    .filter(Boolean)
+    .join(", ");
+---
+<h1>Map</h1>
+<p class="lede">
+  Every topic under the {shortTitle(vp)} viewpoint, with prerequisites above the topics that need them.
+  {layout.nodes.length} topics, {stubs} of them stubs{only ? `, ${only} that exist only here` : ""}.
+</p>
+
+<nav class="switch" aria-label="Viewpoint">
+  {viewpointIds.map((id) => (
+    <a href={mapUrl(id)} aria-current={id === vp ? "page" : undefined}>{shortTitle(id)}</a>
+  ))}
+</nav>
+
+<ul class="legend" aria-label="Legend">
+  <li><svg width="34" height="18" aria-hidden="true"><rect x="1" y="1" width="32" height="16" rx="3" class="legend-box" fill="var(--card)" stroke="var(--muted)" /></svg> Topic</li>
+  <li><svg width="34" height="18" aria-hidden="true"><rect x="1" y="1" width="32" height="16" rx="3" fill="var(--bg)" stroke="var(--muted)" stroke-dasharray="4 3" /></svg> Stub (not written yet)</li>
+  <li><svg width="34" height="18" aria-hidden="true"><rect x="1" y="1" width="32" height="16" rx="3" fill="var(--card)" stroke="var(--muted)" /><rect x="4" y="4" width="26" height="10" rx="2" fill="none" stroke="var(--muted)" /></svg> Exists only in some viewpoints</li>
+  <li><svg width="34" height="18" aria-hidden="true"><path d="M2 9 H32" stroke="var(--via)" stroke-width="1.6" stroke-dasharray="6 3" /></svg> Prerequisite chosen by this viewpoint</li>
+  {courses.map((c, i) => used.has(i) && <li class={`k${i % 8}`}><span class="swatch" aria-hidden="true"></span> {c.title}</li>)}
+</ul>
+
+<div class="map-views">
+  <figure class="map-diagram">
+    <p class="map-tools" hidden data-map-tools>
+      <button type="button" aria-pressed="false" data-fit>Fit to window</button>
+    </p>
+    <div class="map-scroll" data-map-scroll>
+      <svg class="map-svg" width={layout.width + 2 * PAD_X} height={layout.height} viewBox={`${-PAD_X} 0 ${layout.width + 2 * PAD_X} ${layout.height}`}
+        role="group" aria-label={`Map of the graph under the ${shortTitle(vp)} viewpoint`}>
+        <defs>
+          <marker id="arrow" viewBox="0 0 8 8" refX="7.5" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path class="arrow" d="M0,0 L8,4 L0,8 z" />
+          </marker>
+          <marker id="arrow-via" viewBox="0 0 8 8" refX="7.5" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path class="arrow-via" d="M0,0 L8,4 L0,8 z" />
+          </marker>
+        </defs>
+        <g aria-hidden="true">
+          {layout.edges.map((e) => (
+            <path class:list={["edge", e.via && "via"]} d={e.d} marker-end={e.via ? "url(#arrow-via)" : "url(#arrow)"} />
+          ))}
+        </g>
+        <g>
+          {layout.nodes.map((n) => (
+            <a href={nodeUrl(n.id)} class:list={["node", `k${n.course % 8}`, n.stub && "stub", n.onlyIn && "only"]} aria-label={label(n)}>
+              <rect class="box" x={n.x} y={n.y} width={n.w} height={n.h} rx="4" />
+              {n.onlyIn && <rect class="inner" x={n.x + 3} y={n.y + 3} width={n.w - 6} height={n.h - 6} rx="2" />}
+              <rect class="key" x={n.x + 1} y={n.y + 6} width="4" height={n.h - 12} rx="1" />
+              <text x={n.x + 12} y={n.y + 10}>
+                {n.lines.map((line, i) => <tspan x={n.x + 12} dy={i === 0 ? "1.05em" : "1.23em"}>{i < n.lines.length - 1 ? `${line} ` : line}</tspan>)}
+              </text>
+              {n.onlyIn && <text class="tag" x={n.x + n.w - 8} y={n.y + n.h - 7} text-anchor="end">{n.onlyIn.map(shortTitle).join(" ").toUpperCase()}</text>}
+            </a>
+          ))}
+        </g>
+      </svg>
+    </div>
+    <figcaption class="meta">Arrows run from a prerequisite to the topic that needs it. Scroll inside the frame to see all of it.</figcaption>
+  </figure>
+  <script>
+    // Start centred on the first layer, and offer a whole-map view. Without JavaScript
+    // the frame simply scrolls.
+    const frame = document.querySelector<HTMLElement>("[data-map-scroll]");
+    const tools = document.querySelector<HTMLElement>("[data-map-tools]");
+    const fit = document.querySelector<HTMLButtonElement>("[data-fit]");
+    if (frame && tools && fit) {
+      frame.scrollLeft = (frame.scrollWidth - frame.clientWidth) / 2;
+      tools.hidden = false;
+      fit.addEventListener("click", () => {
+        const on = frame.classList.toggle("fit");
+        fit.setAttribute("aria-pressed", String(on));
+        fit.textContent = on ? "Actual size" : "Fit to window";
+        if (!on) frame.scrollLeft = (frame.scrollWidth - frame.clientWidth) / 2;
+      });
+    }
+  </script>
+
+  <section class="map-list" aria-labelledby="by-layer">
+    <h2 id="by-layer">The same map as a list</h2>
+    <p class="meta">Layer 1 needs nothing in the graph; each later topic needs only topics from earlier layers.</p>
+    <ol class="layers">
+      {layout.layers.map((ids, i) => (
+        <li>
+          <h3>Layer {i + 1}</h3>
+          <ul>
+            {ids.map((id) => (
+              <li>
+                <NodeLink id={id} />
+                {v.dag[id].length > 0 && (
+                  <span class="meta"> — needs {v.dag[id].map((p, j) => <>{j > 0 && ", "}<a href={nodeUrl(p)}>{data.nodes[p].title}</a></>)}</span>
+                )}
+              </li>
+            ))}
+          </ul>
+        </li>
+      ))}
+    </ol>
+  </section>
+</div>

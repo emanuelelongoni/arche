@@ -15,10 +15,10 @@ One move a learner can make inside a node (state a result and recognise its hypo
 _Avoid_: step, skill, learning objective
 
 **Stub**:
-A placeholder node with only an id, title, course, kind and status, so that edges can point at it before it is written. A stub is work still to do.
+A placeholder node that needs only an id, title, course, kind and status, so that edges can point at it before it is written. A stub is work still to do.
 
 **Draft**:
-A node written by an agent that passes the validator but that no human has signed off yet. Every new node starts as a draft.
+A node written by an agent that passes the validator but that no human has signed off yet.
 
 **Reviewed**:
 A node a human has signed off. Agents change it only through a job that names it.

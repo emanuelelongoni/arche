@@ -1,0 +1,68 @@
+---
+import Base from "../../layouts/Base.astro";
+import NodeLink from "../../components/NodeLink.astro";
+import { courseUrl, data } from "../../lib/data";
+
+export function getStaticPaths() {
+  return Object.keys(data.courses).map((id) => ({ params: { id } }));
+}
+const c = data.courses[Astro.params.id!];
+const STATE_TEXT = { covered: "Covered", "stub-only": "Stub only", uncovered: "Not covered" } as const;
+const sections = c.sections ?? [];
+const all = Object.values(c.coverage);
+const done = all.filter((x) => x.state === "covered").length;
+const stub = all.filter((x) => x.state === "stub-only").length;
+const prereqs = (c.stated_prerequisites ?? []).map((id) => data.courses[id]).filter(Boolean);
+const loose = Object.values(data.nodes).filter((n) => n.course === c.id && (n.covers ?? []).length === 0);
+---
+<Base title={c.title} description={`Coverage of ${c.title} in the Archē graph.`}>
+  <p class="meta">{[c.part, c.term, c.lectures != null && `${c.lectures} lectures`, c.source].filter(Boolean).join(" · ")}</p>
+  <h1>{c.title}</h1>
+  {prereqs.length > 0 && <p>Stated prerequisites: {prereqs.map((p, i) => <>{i > 0 && ", "}<a href={courseUrl(p.id)}>{p.title}</a></>)}.</p>}
+  {c.notes && <p class="note">{c.notes}</p>}
+
+  {sections.length === 0 && <p>This course has no syllabus items: its topics exist to serve a viewpoint's route.</p>}
+
+  {sections.map((s) => {
+    const mins = c.sectionMinutes[String(s.n)] ?? 0;
+    const lec = s.lectures ?? 0;
+    return (
+      <section aria-labelledby={`s${s.n}`}>
+        <h2 id={`s${s.n}`}>§{s.n} {s.title}</h2>
+        <p class="meta">
+          {lec} lectures · {mins} minutes of topics{lec && mins ? ` · ${Math.round(mins / lec)} minutes per lecture` : ""}
+        </p>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th scope="col">Item</th><th scope="col">Topics</th></tr></thead>
+            <tbody>
+              {s.items.map((it) => {
+                const cov = c.coverage[it.id];
+                return (
+                  <tr id={it.id}>
+                    <td>
+                      {it.text}{it.starred && <span class="meta"> (non-examinable)</span>}
+                      <br /><span class:list={["state", cov.state]}>{STATE_TEXT[cov.state]}</span>
+                    </td>
+                    <td>{cov.nodes.length ? cov.nodes.map((id, i) => <>{i > 0 && <br />}<NodeLink id={id} /></>) : "—"}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    );
+  })}
+
+  {all.length > 0 && (
+    <p><strong>Total:</strong> {done} of {all.length} items covered by draft or reviewed topics, {stub} by stubs only, {all.length - done - stub} not covered.</p>
+  )}
+
+  {loose.length > 0 && (
+    <section aria-labelledby="other">
+      <h2 id="other">Other topics in this course</h2>
+      <ul>{loose.map((n) => <li><NodeLink id={n.id} /></li>)}</ul>
+    </section>
+  )}
+</Base>

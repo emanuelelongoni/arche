@@ -1,0 +1,9 @@
+---
+import Base from "../../layouts/Base.astro";
+import MapView from "../../components/MapView.astro";
+import { shortTitle, viewpointIds } from "../../lib/data";
+const vp = viewpointIds[0];
+---
+<Base title={`Map (${shortTitle(vp)})`} wide>
+  <MapView vp={vp} />
+</Base>

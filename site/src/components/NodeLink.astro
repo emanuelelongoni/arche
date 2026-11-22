@@ -1,0 +1,10 @@
+---
+import { node, nodeUrl } from "../lib/data";
+
+interface Props {
+  id: string;
+}
+const { id } = Astro.props;
+const n = node(id);
+---
+<a href={nodeUrl(id)}>{n.title}</a>{n.status === "stub" && <> <span class="badge stub">stub</span></>}

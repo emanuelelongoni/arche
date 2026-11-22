@@ -6,17 +6,17 @@
     "node": ">=24"
   },
   "scripts": {
-    "export": "python3 ../tools/export_site.py --out .generated/site-data.json",
-    "dev": "npm run export && astro dev",
-    "build": "npm run export && astro build",
+    "generate": "python3 ../tools/export_site.py --out .generated/site-data.json && node scripts/build-math-font.mjs",
+    "dev": "npm run generate && astro dev",
+    "build": "npm run generate && astro build",
     "preview": "astro preview --port 4321",
-    "test": "npm run export && vitest run",
+    "test": "npm run generate && vitest run",
     "check:links": "node scripts/check-links.mjs dist",
     "e2e": "playwright test"
   },
   "dependencies": {
     "@fontsource-variable/source-serif-4": "5.3.1",
-    "@fontsource/libertinus-math": "5.3.0",
+    "@fontsource/stix-two-math": "5.3.0",
     "astro": "7.4.13",
     "elkjs": "0.12.1"
   },

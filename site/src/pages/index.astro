@@ -1,0 +1,56 @@
+---
+import Base from "../layouts/Base.astro";
+import { data, mapUrl, minutesText, shortTitle, viewpointIds } from "../lib/data";
+
+const stats = viewpointIds.map((vp) => {
+  const v = data.viewpoints[vp];
+  const minutes = v.active.reduce((s, id) => s + (data.nodes[id].minutes ?? 0), 0);
+  const stubs = v.active.filter((id) => data.nodes[id].status === "stub").length;
+  return { vp, v, topics: v.active.length, stubs, minutes };
+});
+const total = Object.keys(data.nodes).length;
+---
+<Base title="Archē">
+  <h1>Archē</h1>
+  <p class="lede">
+    A map of undergraduate mathematics for monk-mathematicians: people who study mathematics,
+    much of it produced by machines, for understanding rather than for production.
+  </p>
+  <p>
+    Each topic is something you can learn in one sitting. Topics are joined by their prerequisites,
+    and every prerequisite says exactly why it is needed. Where Lean's Mathlib states a result, the
+    topic links to it, so you can see the formal statement. Some topics can be reached by genuinely
+    different routes, and a <em>viewpoint</em> chooses one.
+  </p>
+
+  <h2>Two routes through the same mathematics</h2>
+  {stats.map(({ vp, v, topics, stubs, minutes }) => (
+    <section aria-labelledby={`vp-${vp}`}>
+      <h3 id={`vp-${vp}`}>{shortTitle(vp)}</h3>
+      <p>{v.description}</p>
+      <p class="meta">
+        {topics} topics ({stubs} not written yet), about {minutesText(minutes)} of study.
+        <a href={mapUrl(vp)}>See the {shortTitle(vp)} map</a>.
+      </p>
+      {(v.references ?? []).length > 0 && (
+        <details>
+          <summary>References</summary>
+          <ul>{v.references!.map((r) => <li>{r.startsWith("http") ? <a href={r}>{r}</a> : r}</li>)}</ul>
+        </details>
+      )}
+    </section>
+  ))}
+
+  <h2>Start here</h2>
+  <ul class="cards">
+    <li><a href="/map/">The map</a><br />The whole graph, layer by layer, under either viewpoint.</li>
+    <li><a href="/route/">Route to a topic</a><br />Pick a target, tick what you know, and get the path in order.</li>
+    <li><a href="/courses/">Courses</a><br />The syllabus each course must cover, and how much of it is written.</li>
+    <li><a href="/topics/">All {total} topics</a><br />Every topic, grouped by course, with a filter.</li>
+  </ul>
+
+  <p class="meta">
+    This is work in progress. Agents draft topics nightly and a human reviews them; each topic says
+    whether it is a stub, a draft or reviewed.
+  </p>
+</Base>

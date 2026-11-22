@@ -1,0 +1,72 @@
+---
+import Base from "../layouts/Base.astro";
+import { courses, data, shortTitle, viewpointIds } from "../lib/data";
+
+const blob = {
+  viewpoints: viewpointIds.map((vp) => ({ id: vp, title: shortTitle(vp), dag: data.viewpoints[vp].dag })),
+  nodes: Object.fromEntries(
+    Object.values(data.nodes).map((n) => [n.id, { t: n.title, m: n.minutes ?? null, s: n.status }]),
+  ),
+};
+const json = JSON.stringify(blob).replace(/</g, "\\u003c");
+const groups = courses
+  .map((c) => ({
+    c,
+    nodes: Object.values(data.nodes)
+      .filter((n) => n.course === c.id)
+      .sort((a, b) => (a.section ?? 99) - (b.section ?? 99) || a.title.localeCompare(b.title)),
+  }))
+  .filter((g) => g.nodes.length);
+---
+<Base title="Route to a topic" description="Plan the topics to learn, in order, to reach a target topic.">
+  <h1>Route to a topic</h1>
+  <p class="lede">
+    Pick a topic you want to reach and a viewpoint, tick what you already know, and see what's left
+    to learn, prerequisites first.
+  </p>
+  <noscript>
+    <p class="note">
+      This tool needs JavaScript. Without it, the same answer comes from
+      <code>python3 tools/plan.py &lt;topic&gt; --viewpoint classical</code> in the repository.
+    </p>
+  </noscript>
+
+  <form id="route-form" class="route" hidden>
+    <div class="field">
+      <label for="route-target"><strong>Target topic</strong></label>
+      <select id="route-target" name="to">
+        <option value="">Choose a topic…</option>
+        {groups.map((g) => (
+          <optgroup label={g.c.title}>
+            {g.nodes.map((n) => <option value={n.id}>{n.title}{n.status === "stub" ? " (stub)" : ""}</option>)}
+          </optgroup>
+        ))}
+      </select>
+    </div>
+    <fieldset>
+      <legend>Viewpoint</legend>
+      <div class="inline">
+        {viewpointIds.map((vp, i) => (
+          <label><input type="radio" name="vp" value={vp} checked={i === 0} /> {shortTitle(vp)}</label>
+        ))}
+        <label><input type="checkbox" name="compare" /> Compare all viewpoints</label>
+      </div>
+    </fieldset>
+    <fieldset id="route-known" hidden>
+      <legend>Topics you already know</legend>
+      <p class="meta">Ticking a topic counts its prerequisites as known too.</p>
+      <ul class="known" id="route-known-list"></ul>
+    </fieldset>
+  </form>
+
+  <p id="route-notice" class="note" hidden></p>
+  <p id="route-summary" class="summary" aria-live="polite"></p>
+  <div id="route-results" class="routes"></div>
+
+  <script type="application/json" id="route-data" set:html={json} />
+</Base>
+
+<script>
+  import { initRoute } from "../scripts/route";
+  initRoute();
+</script>

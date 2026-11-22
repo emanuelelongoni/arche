@@ -34,9 +34,21 @@ schema/             JSON Schemas for nodes, courses, viewpoints, jobs
 graph/courses/      coverage specs (what must be covered)
 graph/viewpoints/   classical.yaml, npov.yaml (which route)
 graph/nodes/        one node per file, by course
-tools/              validate, plan, render, gen_anchor_check, split_bundle
+tools/              validate, plan, render, gen_anchor_check, split_bundle, export_site
+site/               the arche.academy website, generated from graph/ (see below)
 lean/               Lean project pinned to Mathlib; Anchors.lean is generated
 jobs/               the agent work queue
+```
+
+## Website
+
+https://arche.academy is built from `graph/` on every push to `main` (`.github/workflows/site.yml`), so it can't drift from the graph. `tools/export_site.py` resolves the viewpoints through `mmgraph` into one JSON document, and the Astro site in `site/` renders only that. The spec is `docs/specs/site-v0.md`.
+
+```sh
+cd site && npm ci
+npm run dev            # export the graph, then serve with live reload
+npm test               # the route planner gives exactly what tools/plan.py gives
+npm run build && npm run check:links && npx playwright install chromium && npm run e2e
 ```
 
 ## The hands-off loop

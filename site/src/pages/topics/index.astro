@@ -1,0 +1,61 @@
+---
+import Base from "../../layouts/Base.astro";
+import NodeLink from "../../components/NodeLink.astro";
+import { courseUrl, courses, data } from "../../lib/data";
+
+const groups = courses.map((c) => {
+  const ids = Object.values(data.nodes).filter((n) => n.course === c.id);
+  const bySection = (c.sections ?? []).map((s) => ({ s, ids: ids.filter((n) => n.section === s.n).map((n) => n.id) }));
+  const loose = ids.filter((n) => !(c.sections ?? []).some((s) => s.n === n.section)).map((n) => n.id);
+  return { c, bySection: bySection.filter((g) => g.ids.length), loose };
+});
+const total = Object.keys(data.nodes).length;
+---
+<Base title="All topics">
+  <h1>All topics</h1>
+  <p class="lede">{total} topics, grouped by course and section.</p>
+
+  <div class="filter" hidden data-filter>
+    <label for="filter">Filter by title</label>
+    <input id="filter" type="search" autocomplete="off" />
+    <p class="meta" aria-live="polite" data-filter-count></p>
+  </div>
+
+  {groups.map(({ c, bySection, loose }) => (
+    <section data-group>
+      <h2><a href={courseUrl(c.id)}>{c.title}</a></h2>
+      {bySection.map(({ s, ids }) => (
+        <div data-group>
+          <h3>§{s.n} {s.title}</h3>
+          <ul class="topic-list">{ids.map((id) => <li data-title={data.nodes[id].title.toLowerCase()}><NodeLink id={id} /></li>)}</ul>
+        </div>
+      ))}
+      {loose.length > 0 && (
+        <div data-group>
+          <ul class="topic-list">{loose.map((id) => <li data-title={data.nodes[id].title.toLowerCase()}><NodeLink id={id} /></li>)}</ul>
+        </div>
+      )}
+    </section>
+  ))}
+</Base>
+
+<script>
+  const box = document.querySelector<HTMLElement>("[data-filter]");
+  const input = document.querySelector<HTMLInputElement>("#filter");
+  const count = document.querySelector<HTMLElement>("[data-filter-count]");
+  if (box && input && count) {
+    box.hidden = false;
+    const items = [...document.querySelectorAll<HTMLElement>("li[data-title]")];
+    const groups = [...document.querySelectorAll<HTMLElement>("[data-group]")].reverse();
+    input.addEventListener("input", () => {
+      const q = input.value.trim().toLowerCase();
+      let shown = 0;
+      for (const li of items) {
+        li.hidden = !!q && !li.dataset.title!.includes(q);
+        if (!li.hidden) shown++;
+      }
+      for (const g of groups) g.hidden = !g.querySelector("li[data-title]:not([hidden])");
+      count.textContent = q ? `${shown} of ${items.length} topics match.` : "";
+    });
+  }
+</script>

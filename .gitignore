@@ -2,4 +2,5 @@ build/
 lean/.lake/
 lean/lake-manifest.json.bak
 __pycache__/
+.pytest_cache/
 *.pyc

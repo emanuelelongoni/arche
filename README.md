@@ -16,9 +16,10 @@ This repo is content as code. Agents write YAML; validators and Lean check it; a
 ## Quick start
 
 ```sh
-pip install pyyaml jsonschema
+pip install pyyaml jsonschema pytest
 python3 tools/validate.py --report                      # check everything, print coverage
 python3 tools/plan.py ts.heine-borel --compare classical npov
+python3 -m pytest -q tests                              # validator and planner tests
 python3 tools/render.py --viewpoint npov --out build/npov   # needs graphviz for SVG/PNG
 python3 tools/gen_anchor_check.py && (cd lean && lake update && lake exe cache get && lake build)
 ```

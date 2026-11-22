@@ -25,6 +25,7 @@ This repo holds the knowledge graph of Archē (arche.academy), an open-source le
 
 ```sh
 python3 tools/validate.py              # must exit 0
+python3 -m pytest -q tests             # validator and planner tests; must pass
 python3 tools/validate.py --report     # paste the coverage lines for your course into the PR
 python3 tools/gen_anchor_check.py      # regenerates lean/Arche/Anchors.lean
 (cd lean && lake build)                # if Lean is available; CI runs it anyway

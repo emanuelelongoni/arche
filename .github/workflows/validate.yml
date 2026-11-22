@@ -13,11 +13,13 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: pip install pyyaml jsonschema
+      - run: pip install pyyaml jsonschema pytest
       - name: Validate graph
         run: python3 tools/validate.py --report-md report.md
       - name: Anchor file is up to date
         run: python3 tools/gen_anchor_check.py --check
+      - name: Validator and planner tests
+        run: python3 -m pytest -q tests
       - uses: actions/upload-artifact@v4
         if: always()
         with:

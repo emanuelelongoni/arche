@@ -53,4 +53,4 @@ jobs/               the agent work queue
 
 ## Licence
 
-Not chosen yet. Pick one for code and one for content before the first public push.
+Apache-2.0: see [LICENSE](LICENSE). It covers everything in this repository, code and content alike.

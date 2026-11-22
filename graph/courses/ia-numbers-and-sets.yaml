@@ -1,0 +1,72 @@
+id: ia-numbers-and-sets
+title: Numbers and Sets
+prefix: ns
+part: IA
+term: Michaelmas
+lectures: 24
+status: active
+source: cam-schedules-2026-27
+notes: Items paraphrase the 2026–27 Schedules. Only the nodes the pilot slice needs exist yet, as stubs (job J0001).
+sections:
+  - n: 1
+    title: Introduction to number systems and logic
+    lectures: 2
+    items:
+      - {id: number-systems, text: "ℕ, ℤ, ℚ, ℝ; rational and irrational numbers"}
+      - {id: algebraic-transcendental, text: Algebraic and transcendental numbers}
+      - {id: complex-brief, text: Brief treatment of complex numbers}
+      - {id: fta-statement, text: Fundamental theorem of algebra (statement only)}
+      - {id: axioms-proof, text: "Axiomatic systems; proof and why it is needed"}
+      - {id: counterexamples, text: The role of counterexamples}
+      - {id: elementary-logic, text: "Implication and negation; negating compound statements"}
+      - {id: proof-by-contradiction, text: Proof by contradiction}
+  - n: 2
+    title: Sets, relations and functions
+    lectures: 4
+    items:
+      - {id: set-operations, text: "Union, intersection and equality of sets"}
+      - {id: indicator-functions, text: Indicator functions and their use in proving set identities}
+      - {id: functions-inj-surj-bij, text: "Functions: injections, surjections, bijections"}
+      - {id: relations-equivalence, text: Relations and equivalence relations}
+      - {id: counting, text: Counting combinations and permutations}
+      - {id: inclusion-exclusion, text: The inclusion–exclusion principle}
+  - n: 3
+    title: The integers
+    lectures: 2
+    items:
+      - {id: induction, text: Mathematical induction}
+      - {id: well-ordering, text: The well-ordering principle}
+      - {id: binomial-theorem, text: "Examples, including the binomial theorem"}
+  - n: 4
+    title: Elementary number theory
+    lectures: 8
+    items:
+      - {id: prime-factorisation, text: Existence and uniqueness of prime factorisation}
+      - {id: hcf-lcm, text: Highest common factors and least common multiples}
+      - {id: infinitude-primes, text: Euclid's proof that there are infinitely many primes}
+      - {id: euclid-algorithm, text: Euclid's algorithm}
+      - {id: linear-diophantine, text: Solving ax + by = c in integers}
+      - {id: modular-arithmetic, text: Congruences and units modulo n}
+      - {id: crt, text: The Chinese remainder theorem}
+      - {id: wilson, text: Wilson's theorem}
+      - {id: fermat-euler, text: The Fermat–Euler theorem}
+      - {id: rsa, text: Public-key cryptography and RSA}
+  - n: 5
+    title: The real numbers
+    lectures: 4
+    items:
+      - {id: lub-examples, text: Least upper bounds and simple examples}
+      - {id: lub-axiom, text: The least upper bound axiom}
+      - {id: monotone-sequences, text: "Sequences and series; bounded monotonic sequences converge"}
+      - {id: irrationality, text: Irrationality of √2 and e}
+      - {id: decimal-expansions, text: Decimal expansions}
+      - {id: transcendental-construction, text: Construction of a transcendental number}
+  - n: 6
+    title: Countability and uncountability
+    lectures: 4
+    items:
+      - {id: finite-countable-defs, text: "Finite, infinite, countable and uncountable sets"}
+      - {id: countable-union, text: A countable union of countable sets is countable}
+      - {id: reals-uncountable, text: ℝ is uncountable}
+      - {id: cantor-power-set, text: No bijection from a set to its power set}
+      - {id: transcendentals-exist, text: Indirect proof that transcendental numbers exist}

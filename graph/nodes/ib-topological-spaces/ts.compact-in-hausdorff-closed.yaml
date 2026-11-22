@@ -1,0 +1,23 @@
+id: ts.compact-in-hausdorff-closed
+title: Compact subsets of Hausdorff spaces are closed
+course: ib-topological-spaces
+section: 3
+kind: theorem
+status: draft
+minutes: 25
+verification: formal
+knowledge_points:
+- Separate a point from a disjoint compact set by open sets in a Hausdorff space
+- Deduce compact subsets of Hausdorff spaces are closed
+- 'See it fail without Hausdorff: the cofinite topology on an infinite set'
+requires:
+- node: ts.compact-def
+  reason: The proof takes a finite subcover of the separating neighbourhoods.
+- node: ts.hausdorff
+  reason: Hausdorffness provides the separating neighbourhoods.
+anchors:
+- decl: IsCompact.isClosed
+covers:
+- ib-topological-spaces#compact-in-hausdorff-closed
+msc:
+- 54D30

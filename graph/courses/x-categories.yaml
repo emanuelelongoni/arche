@@ -1,0 +1,14 @@
+id: x-categories
+title: Categories for the nPOV route (supplementary)
+prefix: ct
+part: supplementary
+lectures: 0
+status: active
+source: supplementary
+notes: >-
+  Not part of the Cambridge syllabus. Holds the small amount of category theory that the npov
+  viewpoint puts on the route through IB Topological Spaces. Every node here is only_in: [npov].
+  Sections are for organisation only and have no coverage items.
+sections:
+  - {n: 1, title: Categories and functors, items: []}
+  - {n: 2, title: Universal properties and adjunctions, items: []}

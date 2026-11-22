@@ -1,0 +1,25 @@
+id: a2.norms
+title: Norms, including matrix norms
+course: ib-analysis-ii
+section: 3
+kind: definition
+status: draft
+minutes: 30
+verification: formal
+knowledge_points:
+- State the norm axioms and show a norm induces the metric d(x, y) = ‖x − y‖
+- Work with the ℓ¹, ℓ² and ℓ∞ norms on ℝⁿ and the sup norm on C[a, b]
+- Define the operator norm of a matrix and prove ‖AB‖ ≤ ‖A‖ ‖B‖
+requires:
+- node: a2.metric-examples
+  reason: The ℓᵖ and sup metrics met there are exactly the metrics these norms induce.
+anchors:
+- decl: NormedAddCommGroup
+- decl: NormedSpace
+- decl: ContinuousLinearMap.opNorm
+- decl: Matrix.linftyOpNormedAddCommGroup
+covers:
+- ib-analysis-ii#norms
+msc:
+- 46B99
+- 15A60

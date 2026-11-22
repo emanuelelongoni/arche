@@ -1,0 +1,68 @@
+id: ib-topological-spaces
+title: Topological Spaces
+prefix: ts
+part: IB
+term: Lent
+lectures: 16
+status: active
+source: cam-schedules-2026-27
+stated_prerequisites: [ib-analysis-ii]
+notes: Items paraphrase the 2026–27 Schedules. Gold-standard nodes exist for §1–3; §4–5 are job J0004.
+sections:
+  - n: 1
+    title: Topological spaces
+    lectures: 4
+    items:
+      - {id: topology-def, text: Definition of a topology}
+      - {id: topologies-from-metrics, text: Topologies from metrics}
+      - {id: further-examples, text: Further examples}
+      - {id: neighbourhoods-closed-sets, text: Neighbourhoods and closed sets}
+      - {id: convergence-continuity, text: Convergence and continuity}
+      - {id: hausdorff, text: Hausdorff spaces}
+      - {id: homeomorphisms, text: Homeomorphisms}
+      - {id: topological-properties, text: Topological and non-topological properties}
+      - {id: subspace, text: The subspace topology}
+      - {id: quotient, text: The quotient topology}
+      - {id: product, text: The product topology}
+      - {id: universal-properties, text: "Universal properties of the subspace, quotient and product topologies"}
+  - n: 2
+    title: Connectedness
+    lectures: 3
+    items:
+      - {id: connected-def, text: Connectedness defined by open sets}
+      - {id: connected-examples, text: "Examples, including [0, 1]"}
+      - {id: components, text: Components}
+      - {id: continuous-image-connected, text: A continuous image of a connected space is connected}
+      - {id: path-connectedness-relation, text: Path-connectedness and how it relates to connectedness}
+      - {id: open-connected-euclidean, text: Connected open subsets of Euclidean space are path-connected}
+      - {id: connected-products, text: Connectedness of products}
+  - n: 3
+    title: Compactness
+    lectures: 3
+    items:
+      - {id: compact-def, text: Compactness defined by open covers}
+      - {id: compact-examples, text: "Examples, including [0, 1]"}
+      - {id: closed-in-compact, text: Closed subsets of compact spaces are compact}
+      - {id: compact-in-hausdorff-closed, text: Compact subsets of Hausdorff spaces are closed}
+      - {id: continuous-image-compact, text: Continuous images of compact sets are compact}
+      - {id: compact-to-hausdorff-homeo, text: A continuous bijection from a compact space to a Hausdorff space is a homeomorphism}
+      - {id: finite-products-compact, text: Finite products of compact spaces are compact}
+      - {id: compact-subsets-euclidean, text: The compact subsets of Euclidean space}
+      - {id: compact-metric-sequences, text: Compactness of metric spaces via sequences}
+  - n: 4
+    title: Topology of manifolds
+    lectures: 4
+    items:
+      - {id: manifold-def, text: Definition of a topological manifold}
+      - {id: manifold-examples, text: "Spheres (stereographic projection), tori, the real projective plane, polygons with side identifications"}
+      - {id: manifold-non-examples, text: Spaces that are not manifolds}
+      - {id: manifolds-homogeneous, text: Connected manifolds are homogeneous}
+      - {id: compact-manifolds-embed, text: Compact manifolds embed in a Euclidean space}
+  - n: 5
+    title: Triangulable surfaces
+    lectures: 2
+    items:
+      - {id: triangulations, text: Triangulations of surfaces}
+      - {id: euler-characteristic, text: The Euler characteristic}
+      - {id: orientability, text: Orientability}
+      - {id: classification-statement, text: Statement of the classification of triangulable surfaces}

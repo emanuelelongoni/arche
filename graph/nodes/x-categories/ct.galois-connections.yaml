@@ -1,0 +1,24 @@
+id: ct.galois-connections
+title: Galois connections
+course: x-categories
+section: 2
+kind: definition
+status: draft
+minutes: 30
+verification: formal
+only_in:
+- npov
+knowledge_points:
+- Define a Galois connection f(a) ≤ b ⟺ a ≤ g(b) between posets
+- 'Recognise examples: direct image ⊣ preimage on power sets; inclusion ℤ → ℝ and floor'
+- Prove the left adjoint preserves joins and the right adjoint preserves meets
+- See a Galois connection as an adjunction between posets regarded as categories
+requires:
+- node: ct.functors
+  reason: The adjunction reading treats monotone maps as functors between posets.
+anchors:
+- decl: GaloisConnection
+- decl: CategoryTheory.Adjunction
+msc:
+- 06A15
+- 18A40

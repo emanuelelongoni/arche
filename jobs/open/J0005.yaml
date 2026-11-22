@@ -1,0 +1,13 @@
+id: J0005
+kind: extract-nodes
+title: Vectors and Matrices course file and the vm.vector-spaces stub
+status: open
+priority: 4
+scope: {course: ia-vectors-and-matrices}
+instructions: >-
+  Paraphrase the Vectors and Matrices sections and items from the current Cambridge Schedules into the
+  course file (status active), then flesh out vm.vector-spaces, splitting it if it exceeds 45 minutes.
+acceptance:
+  - python3 tools/validate.py exits 0 with no new warnings
+  - The course file has sections with lecture counts and items
+  - vm.vector-spaces is no longer a stub

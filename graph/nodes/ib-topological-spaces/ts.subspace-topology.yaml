@@ -1,0 +1,30 @@
+id: ts.subspace-topology
+title: The subspace topology
+course: ib-topological-spaces
+section: 1
+kind: definition
+status: draft
+minutes: 25
+verification: formal
+knowledge_points:
+- 'Define the subspace topology {U ∩ A : U open} and show the inclusion is continuous'
+- Show a subset of a metric space gets the same topology from the restricted metric
+- 'Use: f : Z → A is continuous iff the composite Z → A → X is'
+requires:
+- node: ts.convergence-continuity
+  reason: The defining property and the examples are about continuity of maps into A.
+- choice: constructions-route
+  default: concrete
+  options:
+    concrete: []
+    initial-final:
+    - node: ts.initial-final-topologies
+      reason: On this route the subspace topology is defined as the topology induced by the inclusion.
+anchors:
+- decl: instTopologicalSpaceSubtype
+- decl: Topology.IsEmbedding.subtypeVal
+- decl: continuous_induced_rng
+covers:
+- ib-topological-spaces#subspace
+msc:
+- 54B05

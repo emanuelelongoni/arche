@@ -1,0 +1,13 @@
+id: ns.equivalence-relations
+title: Equivalence relations and quotient sets
+course: ia-numbers-and-sets
+section: 2
+kind: definition
+status: stub
+anchors:
+- decl: Setoid
+  library: lean-core
+- decl: Quotient
+  library: lean-core
+covers:
+- ia-numbers-and-sets#relations-equivalence

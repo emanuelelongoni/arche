@@ -1,0 +1,25 @@
+id: ts.connected-image
+title: Continuous images of connected spaces
+course: ib-topological-spaces
+section: 2
+kind: theorem
+status: draft
+minutes: 20
+verification: formal
+knowledge_points:
+- Prove a continuous image of a connected space is connected
+- 'Recover the intermediate value theorem for continuous f : [a, b] → ℝ'
+- 'Use it as an invariant: a connected space is not homeomorphic to a disconnected one'
+requires:
+- node: ts.interval-connected
+  reason: The intermediate value theorem is recovered from connectedness of [a, b].
+encompasses:
+- node: ts.connected
+  weight: 0.5
+anchors:
+- decl: IsConnected.image
+- decl: intermediate_value_Icc
+covers:
+- ib-topological-spaces#continuous-image-connected
+msc:
+- 54D05

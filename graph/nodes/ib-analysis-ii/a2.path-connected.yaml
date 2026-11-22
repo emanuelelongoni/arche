@@ -1,0 +1,25 @@
+id: a2.path-connected
+title: Path-connectedness
+course: ib-analysis-ii
+section: 3
+kind: definition
+status: draft
+minutes: 25
+verification: formal
+knowledge_points:
+- 'Define paths γ : [0, 1] → X and path-connected sets'
+- Show convex subsets of ℝⁿ and the circle are path-connected, and ℝ ∖ {0} is not
+- Prove a continuous image of a path-connected set is path-connected
+requires:
+- node: a2.metric-continuity
+  reason: Paths are continuous maps from [0, 1], and images are taken under continuous maps.
+- node: a1.ivt
+  reason: Showing ℝ ∖ {0} is not path-connected applies the intermediate value theorem to a path.
+anchors:
+- decl: Path
+- decl: JoinedIn
+- decl: IsPathConnected
+covers:
+- ib-analysis-ii#path-connectedness
+msc:
+- 54D05

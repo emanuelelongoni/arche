@@ -1,0 +1,34 @@
+id: a2.norm-equivalence
+title: All norms on a finite-dimensional space are equivalent
+course: ib-analysis-ii
+section: 3
+kind: theorem
+status: draft
+minutes: 40
+verification: formal
+knowledge_points:
+- 'State Lipschitz equivalence: c‖x‖ ≤ ‖x‖′ ≤ C‖x‖ for all x'
+- 'Prove it on ℝⁿ: compare with ‖·‖₁ and minimise a norm over the (sequentially) compact unit sphere'
+- 'Deduce: ℝⁿ has one norm topology, and linear maps between finite-dimensional normed spaces are continuous'
+- 'Show it fails in infinite dimensions: ‖·‖₁ and ‖·‖∞ on C[0, 1]'
+requires:
+- node: a2.norms
+  reason: The statement compares two norms.
+- node: a2.bolzano-weierstrass-rn
+  reason: The unit sphere of ℝⁿ is closed and bounded, hence sequentially compact.
+- node: a2.continuous-on-seq-compact
+  reason: The second norm is continuous on the unit sphere, so it attains a positive minimum there.
+encompasses:
+- node: a2.continuous-on-seq-compact
+  weight: 0.6
+- node: a2.bolzano-weierstrass-rn
+  weight: 0.3
+anchors:
+- decl: LinearMap.continuous_of_finiteDimensional
+covers:
+- ib-analysis-ii#norm-equivalence
+off_platform: The proof used compactness of the unit sphere. Find a statement equivalent to 'every closed
+  bounded set is compact' for a normed space, and decide what it says about the space's dimension (Riesz's
+  lemma).
+msc:
+- 46B20

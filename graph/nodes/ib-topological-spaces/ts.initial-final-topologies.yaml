@@ -1,0 +1,32 @@
+id: ts.initial-final-topologies
+title: Initial and final topologies
+course: ib-topological-spaces
+section: 1
+kind: concept
+status: draft
+minutes: 40
+verification: formal
+only_in:
+- npov
+knowledge_points:
+- 'For f : X → Y, define the induced topology f*σ (coarsest making f continuous) and the coinduced f₊τ
+  (finest)'
+- 'Prove f₊τ ≤ σ ⟺ τ ≤ f*σ: a Galois connection between lattices of topologies'
+- Define initial topologies for families of maps out of X and final topologies for families into Y
+- Recognise subspace and product topologies as initial, quotient topologies as final
+requires:
+- node: ts.convergence-continuity
+  reason: Both topologies are characterised by which maps are continuous.
+- node: ct.galois-connections
+  reason: The induced/coinduced pair is presented as a Galois connection between complete lattices.
+anchors:
+- decl: TopologicalSpace.induced
+- decl: TopologicalSpace.coinduced
+- decl: gc_coinduced_induced
+- decl: continuous_iff_le_induced
+- decl: continuous_iff_coinduced_le
+lesson_notes:
+  npov: 'This node carries the nPOV route through §1: the three constructions that follow are instances,
+    with their universal properties free.'
+msc:
+- 54A10

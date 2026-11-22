@@ -1,0 +1,15 @@
+id: J0002
+kind: extract-nodes
+title: Analysis I, all sections
+status: open
+priority: 2
+scope: {course: ia-analysis-i, sections: [1, 2, 3, 4, 5]}
+depends_on: [J0001]
+instructions: >-
+  Write draft nodes covering every item. Replace the stubs a1.sequence-convergence, a1.bolzano-weierstrass,
+  a1.continuity, a1.ivt and a1.extreme-value in place. The starred item may be covered by an optional
+  node; mark it in its title.
+acceptance:
+  - python3 tools/validate.py exits 0 with no new warnings
+  - Coverage report shows 29/29 items of ia-analysis-i covered by draft nodes
+  - No a1.* node has status stub

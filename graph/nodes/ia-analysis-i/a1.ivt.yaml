@@ -1,0 +1,10 @@
+id: a1.ivt
+title: The intermediate value theorem
+course: ia-analysis-i
+section: 2
+kind: theorem
+status: stub
+anchors:
+- decl: intermediate_value_Icc
+covers:
+- ia-analysis-i#ivt

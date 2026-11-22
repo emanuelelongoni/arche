@@ -1,0 +1,25 @@
+id: ts.interval-compact
+title: '[0, 1] is compact'
+course: ib-topological-spaces
+section: 3
+kind: theorem
+status: draft
+minutes: 25
+verification: formal
+knowledge_points:
+- Prove [0, 1] is compact using the least upper bound property
+- 'Recover: a continuous real function on [a, b] is bounded and attains its bounds'
+requires:
+- node: ts.compact-def
+  reason: The statement is compactness by open covers.
+- node: ns.least-upper-bound
+  reason: The proof takes the supremum of the x for which [0, x] is finitely covered.
+encompasses:
+- node: ns.least-upper-bound
+  weight: 0.4
+anchors:
+- decl: isCompact_Icc
+covers:
+- ib-topological-spaces#compact-examples
+msc:
+- 54D30

@@ -1,0 +1,68 @@
+id: ib-analysis-ii
+title: Analysis II
+prefix: a2
+part: IB
+term: Michaelmas
+lectures: 24
+status: active
+source: cam-schedules-2026-27
+notes: Items paraphrase the 2026–27 Schedules. Gold-standard nodes exist for §3 and for uniform continuity in §2; the rest is job J0003.
+sections:
+  - n: 1
+    title: Uniform convergence
+    lectures: 4
+    items:
+      - {id: uniform-convergence-principle, text: The general principle of uniform convergence}
+      - {id: uniform-limit-continuous, text: A uniform limit of continuous functions is continuous}
+      - {id: uniform-limit-differentiable, text: "Limits of differentiable functions are differentiable if the derivatives converge uniformly"}
+      - {id: weierstrass-m-test, text: Series of functions and the Weierstrass M-test}
+      - {id: power-series-local-uniform, text: Local uniform convergence of power series}
+  - n: 2
+    title: Uniform continuity and integration
+    lectures: 3
+    items:
+      - {id: uniform-continuity, text: Uniform continuity}
+      - {id: cont-closed-bounded-uc, text: Continuous functions on closed bounded intervals are uniformly continuous}
+      - {id: riemann-review, text: "Riemann integration, reviewing Analysis I"}
+      - {id: uniform-limit-integrable, text: "A uniform limit of integrable functions is integrable, and integrals converge"}
+  - n: 3
+    title: Metric spaces
+    lectures: 6
+    items:
+      - {id: metric-def, text: Definition of a metric space}
+      - {id: metric-examples, text: "Examples, including the Euclidean metric on ℝⁿ"}
+      - {id: metric-limits, text: Limits}
+      - {id: open-closed, text: Open and closed sets}
+      - {id: seq-compactness, text: Sequential compactness}
+      - {id: bolzano-weierstrass, text: The Bolzano–Weierstrass theorem (in ℝⁿ)}
+      - {id: cont-seq-compact-bounded-uc, text: "A continuous function on a sequentially compact set is bounded and uniformly continuous"}
+      - {id: norms, text: "Norms, with examples including matrix norms"}
+      - {id: norm-equivalence, text: All norms on a finite-dimensional vector space are Lipschitz equivalent}
+      - {id: path-connectedness, text: Path-connectedness}
+  - n: 4
+    title: Differentiation from ℝᵐ to ℝⁿ
+    lectures: 6
+    items:
+      - {id: derivative-linear-map, text: The derivative as a linear map and its elementary properties}
+      - {id: chain-rule, text: The chain rule}
+      - {id: partials-continuous-imply-diff, text: "Partial derivatives; continuous partials imply differentiability"}
+      - {id: mixed-partials-symmetric, text: Higher derivatives; symmetry of continuous mixed partials}
+      - {id: hessian-taylor, text: The Hessian and second-order Taylor expansion for C² functions}
+      - {id: critical-points, text: Classification of critical points}
+      - {id: mean-value-inequality, text: The mean value inequality}
+      - {id: zero-derivative-constant, text: Zero derivative on a path-connected open set implies constant}
+  - n: 5
+    title: The contraction mapping theorem
+    lectures: 3
+    items:
+      - {id: completeness-def, text: "Completeness, with incomplete examples"}
+      - {id: completeness-rn-c0, text: "Completeness of ℝⁿ and of C⁰([a, b]) with the uniform norm"}
+      - {id: closed-iff-complete, text: A subset of a complete space is complete iff it is closed}
+      - {id: contraction-mapping, text: The contraction mapping theorem}
+  - n: 6
+    title: Applications of the contraction mapping theorem
+    lectures: 2
+    items:
+      - {id: inverse-function-theorem, text: The inverse function theorem}
+      - {id: implicit-function-theorem, text: The implicit function theorem}
+      - {id: picard, text: Picard's theorem for systems of ODEs}

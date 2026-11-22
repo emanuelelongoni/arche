@@ -1,0 +1,13 @@
+id: ns.least-upper-bound
+title: Least upper bounds and the completeness axiom
+course: ia-numbers-and-sets
+section: 5
+kind: concept
+status: stub
+anchors:
+- decl: IsLUB
+- decl: le_csSup
+- decl: csSup_le
+covers:
+- ia-numbers-and-sets#lub-examples
+- ia-numbers-and-sets#lub-axiom

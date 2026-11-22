@@ -1,0 +1,13 @@
+id: J0004
+kind: extract-nodes
+title: Topological Spaces, sections 4 and 5 (manifolds, triangulable surfaces)
+status: open
+priority: 3
+scope: {course: ib-topological-spaces, sections: [4, 5]}
+instructions: >-
+  Mathlib's coverage of topological manifolds and triangulations is thinner than of point-set topology:
+  search before anchoring, and use verification partial or informal where needed. List missing results
+  under "Noticed, not changed" as candidate Prove2Me missions.
+acceptance:
+  - python3 tools/validate.py exits 0 with no new warnings
+  - Coverage report shows 37/37 items of ib-topological-spaces covered by draft nodes

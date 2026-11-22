@@ -1,0 +1,36 @@
+id: ts.compact-hausdorff-homeomorphism
+title: Continuous bijections from compact to Hausdorff are homeomorphisms
+course: ib-topological-spaces
+section: 3
+kind: theorem
+status: draft
+minutes: 30
+verification: formal
+knowledge_points:
+- 'Prove it: closed ⟶ compact ⟶ compact image ⟶ closed, so the map is closed'
+- 'Apply it: [0, 1] with 0 ~ 1 is homeomorphic to S¹'
+requires:
+- node: ts.closed-in-compact
+  reason: 'Step one: closed subsets of the domain are compact.'
+- node: ts.compact-in-hausdorff-closed
+  reason: 'Step three: compact images in the codomain are closed.'
+- node: ts.compact-image
+  reason: 'Step two: their images are compact.'
+- node: ts.homeomorphisms
+  reason: The conclusion is that the map is a homeomorphism.
+- node: ts.quotient-topology
+  reason: The application identifies a quotient of [0, 1] with the circle.
+encompasses:
+- node: ts.closed-in-compact
+  weight: 0.6
+- node: ts.compact-in-hausdorff-closed
+  weight: 0.6
+- node: ts.compact-image
+  weight: 0.6
+anchors:
+- decl: Continuous.homeoOfEquivCompactToT2
+covers:
+- ib-topological-spaces#compact-to-hausdorff-homeo
+msc:
+- 54D30
+- 54C05

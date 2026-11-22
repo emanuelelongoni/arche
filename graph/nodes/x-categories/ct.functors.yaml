@@ -1,0 +1,22 @@
+id: ct.functors
+title: Functors
+course: x-categories
+section: 1
+kind: definition
+status: draft
+minutes: 25
+verification: formal
+only_in:
+- npov
+knowledge_points:
+- Define functors and check functoriality for the forgetful functor Top → Set
+- See monotone maps between posets as functors between posets-as-categories
+- Prove functors send isomorphisms to isomorphisms, and use it to show two spaces are not homeomorphic
+requires:
+- node: ct.categories
+  reason: Functors are maps between categories.
+anchors:
+- decl: CategoryTheory.Functor
+- decl: CategoryTheory.forget
+msc:
+- 18A22

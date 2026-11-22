@@ -1,0 +1,23 @@
+id: ts.components
+title: Connected components
+course: ib-topological-spaces
+section: 2
+kind: definition
+status: draft
+minutes: 25
+verification: formal
+knowledge_points:
+- Prove a union of connected sets sharing a point is connected
+- Define components as equivalence classes; show they are connected and closed
+- Find the components of ℚ and of the Cantor set
+requires:
+- node: ts.connected
+  reason: Components are maximal connected subsets.
+- node: ns.equivalence-relations
+  reason: '"In a common connected set" is shown to be an equivalence relation.'
+anchors:
+- decl: connectedComponent
+covers:
+- ib-topological-spaces#components
+msc:
+- 54D05

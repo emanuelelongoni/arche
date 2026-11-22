@@ -1,0 +1,30 @@
+id: ts.connected-products
+title: Products of connected spaces
+course: ib-topological-spaces
+section: 2
+kind: theorem
+status: draft
+minutes: 25
+verification: formal
+knowledge_points:
+- Prove X × Y is connected iff X and Y are (both non-empty)
+- Use crosses {x} × Y ∪ X × {y} and the common-point lemma
+- Conclude ℝⁿ and products of intervals are connected
+requires:
+- node: ts.components
+  reason: The proof uses the lemma that connected sets sharing a point have connected union.
+- node: ts.product-topology
+  reason: The statement is about the product topology.
+- node: ts.interval-connected
+  reason: Connectedness of ℝⁿ and of boxes is deduced from that of intervals.
+encompasses:
+- node: ts.components
+  weight: 0.3
+anchors:
+- decl: IsConnected.prod
+- decl: isConnected_univ_pi
+covers:
+- ib-topological-spaces#connected-products
+msc:
+- 54D05
+- 54B10

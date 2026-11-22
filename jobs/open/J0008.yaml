@@ -1,0 +1,13 @@
+id: J0008
+kind: maintenance
+title: Monthly Mathlib bump (recurring)
+status: open
+priority: 5
+scope: {}
+instructions: >-
+  Update rev in lean/lakefile.toml and lean/lean-toolchain to the latest Mathlib master commit and its
+  toolchain, run lake update, regenerate anchors, and repair renamed declarations (Mathlib marks old names
+  with @[deprecated]; follow them). Don't close this job: reopen it each month.
+acceptance:
+  - lake build succeeds against the new commit
+  - No anchor uses a deprecated name

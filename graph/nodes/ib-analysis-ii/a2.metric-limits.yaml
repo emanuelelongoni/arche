@@ -1,0 +1,27 @@
+id: a2.metric-limits
+title: Limits in metric spaces
+course: ib-analysis-ii
+section: 3
+kind: definition
+status: draft
+minutes: 25
+verification: formal
+knowledge_points:
+- Define x_n → x in (X, d) as d(x_n, x) → 0 in ℝ
+- Prove limits are unique
+- Show convergence in ℝⁿ (Euclidean or sup metric) is coordinatewise convergence
+requires:
+- node: a2.metric-examples
+  reason: Coordinatewise convergence in ℝⁿ is proved for the Euclidean and sup metrics introduced there.
+- node: a1.sequence-convergence
+  reason: The definition reduces convergence in X to convergence of the real sequence d(x_n, x).
+encompasses:
+- node: a1.sequence-convergence
+  weight: 0.5
+anchors:
+- decl: Metric.tendsto_atTop
+- decl: tendsto_nhds_unique
+covers:
+- ib-analysis-ii#metric-limits
+msc:
+- 54E35

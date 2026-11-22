@@ -1,0 +1,24 @@
+id: ts.hausdorff
+title: Hausdorff spaces
+course: ib-topological-spaces
+section: 1
+kind: definition
+status: draft
+minutes: 25
+verification: formal
+knowledge_points:
+- State the Hausdorff (T₂) axiom; show metric spaces are Hausdorff
+- Prove limits of sequences in a Hausdorff space are unique
+- 'Recognise non-Hausdorff spaces: the cofinite topology on an infinite set, Sierpiński space'
+requires:
+- node: ts.convergence-continuity
+  reason: The payoff of the axiom is uniqueness of limits, and the counterexamples are those met there.
+- node: ts.metric-topology
+  reason: Metric spaces are shown to be Hausdorff by separating points with balls of the metric topology.
+anchors:
+- decl: T2Space
+- decl: tendsto_nhds_unique
+covers:
+- ib-topological-spaces#hausdorff
+msc:
+- 54D10

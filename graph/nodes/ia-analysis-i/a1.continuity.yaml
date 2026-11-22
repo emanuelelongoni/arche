@@ -1,0 +1,10 @@
+id: a1.continuity
+title: Continuity of real functions (ε–δ)
+course: ia-analysis-i
+section: 2
+kind: definition
+status: stub
+anchors:
+- decl: Metric.continuous_iff
+covers:
+- ia-analysis-i#continuity-def

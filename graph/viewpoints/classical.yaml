@@ -1,0 +1,13 @@
+id: classical
+title: Classical (Cambridge Schedules)
+description: >-
+  Follows the 2026–27 Cambridge Schedules and their recommended books (for Topological Spaces,
+  Munkres and Lee). Constructions are built by hand from open sets; universal properties are
+  stated concretely; finite products of compact spaces go through the tube lemma.
+references:
+  - J. R. Munkres, Topology, 2nd ed.
+  - J. M. Lee, Introduction to Topological Manifolds
+choices:
+  constructions-route: concrete
+  up-framing: elementwise
+  product-compactness-route: tube-lemma

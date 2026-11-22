@@ -1,0 +1,14 @@
+id: J0006
+kind: review
+title: Human review of the gold-standard slice
+status: open
+priority: 1
+scope: {course: ib-topological-spaces, sections: [1, 2, 3]}
+instructions: >-
+  For a human, not an agent. Read graph/nodes/ib-topological-spaces, graph/nodes/ib-analysis-ii and
+  graph/nodes/x-categories with build/npov.svg open. Check each edge's reason, the choice groups and
+  the npov lesson notes. Set status: reviewed on nodes you accept; edit spec/STYLE.md wherever you
+  disagree with a pattern, so agents learn it.
+acceptance:
+  - Every node in the slice is reviewed or has a review comment in the PR
+  - spec/STYLE.md updated with any pattern-level corrections

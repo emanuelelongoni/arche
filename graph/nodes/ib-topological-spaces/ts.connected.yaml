@@ -1,0 +1,27 @@
+id: ts.connected
+title: Connected spaces
+course: ib-topological-spaces
+section: 2
+kind: definition
+status: draft
+minutes: 30
+verification: formal
+knowledge_points:
+- 'Define connectedness: no partition into two disjoint non-empty open sets; equivalently only ∅ and X
+  are clopen'
+- 'Prove: X is connected iff every continuous map to the discrete space {0, 1} is constant'
+- Show ℚ is disconnected; decide connectedness of finite spaces
+requires:
+- node: ts.subspace-topology
+  reason: Connectedness of subsets is defined through the subspace topology.
+anchors:
+- decl: ConnectedSpace
+- decl: IsConnected
+- decl: isClopen_iff
+covers:
+- ib-topological-spaces#connected-def
+lesson_notes:
+  npov: 'Lead with ''every map to the discrete two-point space is constant'': a property tested by maps,
+    not by sets.'
+msc:
+- 54D05

@@ -1,0 +1,10 @@
+id: ia-vectors-and-matrices
+title: Vectors and Matrices
+prefix: vm
+part: IA
+term: Michaelmas
+lectures: 24
+status: stub
+source: cam-schedules-2026-27
+notes: Outside the pilot strand. Exists so that Analysis II nodes can point at a linear-algebra stub. Sections to be extracted later.
+sections: []

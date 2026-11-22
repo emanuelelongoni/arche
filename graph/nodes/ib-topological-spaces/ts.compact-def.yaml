@@ -1,0 +1,26 @@
+id: ts.compact-def
+title: Compactness by open covers
+course: ib-topological-spaces
+section: 3
+kind: definition
+status: draft
+minutes: 30
+verification: formal
+knowledge_points:
+- Define compactness by finite subcovers, for spaces and for subsets via the subspace topology
+- Show finite spaces and any space with the cofinite topology are compact; ℝ and (0, 1) are not
+- Show finite unions of compact sets are compact
+requires:
+- node: ts.subspace-topology
+  reason: Compact subsets are defined through the subspace topology.
+anchors:
+- decl: IsCompact
+- decl: CompactSpace
+- decl: isCompact_iff_finite_subcover
+covers:
+- ib-topological-spaces#compact-def
+lesson_notes:
+  npov: Mention that Mathlib defines compactness with filters (every ultrafilter converges), and point
+    ahead to compactness as universal closedness.
+msc:
+- 54D30

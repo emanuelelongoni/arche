@@ -1,0 +1,24 @@
+id: ts.neighbourhoods-closed
+title: Neighbourhoods, closed sets, closure and interior
+course: ib-topological-spaces
+section: 1
+kind: definition
+status: draft
+minutes: 30
+verification: formal
+knowledge_points:
+- Define neighbourhoods of a point and the interior of a set
+- Define closed sets and closure; characterise the closure by neighbourhoods
+- Define dense subsets and recognise examples (ℚ in ℝ)
+requires:
+- node: ts.topology-def
+  reason: Every notion here is defined from the open sets.
+anchors:
+- decl: nhds
+- decl: IsClosed
+- decl: closure
+- decl: interior
+covers:
+- ib-topological-spaces#neighbourhoods-closed-sets
+msc:
+- 54A05

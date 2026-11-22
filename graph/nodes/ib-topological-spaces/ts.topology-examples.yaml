@@ -1,0 +1,27 @@
+id: ts.topology-examples
+title: Examples of topologies
+course: ib-topological-spaces
+section: 1
+kind: example
+status: draft
+minutes: 25
+verification: formal
+knowledge_points:
+- Work with the discrete and indiscrete topologies
+- Work with the cofinite topology on an infinite set
+- Work with Sierpiński space {0, 1} with open sets ∅, {1}, {0, 1}
+requires:
+- node: ts.topology-def
+  reason: Each example is checked against the axioms.
+illuminates:
+- node: ct.universal-property
+  note: 'Sierpiński space represents open sets: open U ⊆ X correspond to continuous maps X → S. A first
+    representing object.'
+anchors:
+- decl: DiscreteTopology
+- decl: CofiniteTopology
+- decl: sierpinskiSpace
+covers:
+- ib-topological-spaces#further-examples
+msc:
+- 54A05

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://arche.academy/schema/viewpoint.schema.json",
+  "title": "Viewpoint",
+  "description": "A viewpoint picks one option in every choice group. With a viewpoint fixed, the graph is a plain DAG. Groups it leaves out take their default. See spec/SCHEMA.md.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "title", "description", "choices"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+    "title": { "type": "string" },
+    "description": { "type": "string" },
+    "references": { "type": "array", "items": { "type": "string" } },
+    "choices": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    }
+  }
+}

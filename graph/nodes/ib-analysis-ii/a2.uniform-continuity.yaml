@@ -1,0 +1,23 @@
+id: a2.uniform-continuity
+title: Uniform continuity
+course: ib-analysis-ii
+section: 2
+kind: definition
+status: draft
+minutes: 25
+verification: formal
+knowledge_points:
+- State uniform continuity and contrast its quantifier order with pointwise continuity
+- Decide uniform continuity for x ↦ x² on [0, 1] and on ℝ, and for x ↦ 1/x on (0, 1]
+- Show Lipschitz maps are uniformly continuous
+requires:
+- node: a1.continuity
+  reason: The definition is ε–δ continuity with the δ chosen before the point, so the pointwise version
+    must be secure first.
+anchors:
+- decl: UniformContinuous
+- decl: Metric.uniformContinuous_iff
+covers:
+- ib-analysis-ii#uniform-continuity
+msc:
+- 26A15

@@ -1,0 +1,33 @@
+id: ts.compact-metric-sequential
+title: Compact metric spaces are the sequentially compact ones
+course: ib-topological-spaces
+section: 3
+kind: theorem
+status: draft
+minutes: 40
+verification: formal
+knowledge_points:
+- Prove compact implies sequentially compact for metric spaces
+- Prove the converse via the Lebesgue number lemma and total boundedness
+- Recover the Analysis II theorems on continuous functions on sequentially compact sets
+requires:
+- node: ts.compact-def
+  reason: One side of the equivalence is compactness by open covers.
+- node: a2.sequential-compactness
+  reason: The other side is sequential compactness from Analysis II.
+- node: ts.metric-topology
+  reason: Open covers are of the metric topology, with balls as basic open sets.
+encompasses:
+- node: a2.sequential-compactness
+  weight: 0.5
+illuminates:
+- node: a2.continuous-on-seq-compact
+  note: With this theorem the Analysis II results become special cases of the compactness ones.
+anchors:
+- decl: isCompact_iff_isSeqCompact
+- decl: IsCompact.isSeqCompact
+covers:
+- ib-topological-spaces#compact-metric-sequences
+msc:
+- 54E45
+- 54D30

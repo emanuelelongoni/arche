@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://arche.academy/schema/job.schema.json",
+  "title": "Agent job",
+  "description": "One small, reviewable unit of agent work. See jobs/README.md.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "kind", "title", "status", "scope", "acceptance"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^J[0-9]{4}$" },
+    "kind": { "enum": ["extract-nodes", "flesh-out-stubs", "anchor", "edges", "viewpoint", "review", "maintenance"] },
+    "title": { "type": "string" },
+    "status": { "enum": ["open", "claimed", "in-review", "done"] },
+    "priority": { "type": "integer", "minimum": 1, "maximum": 5 },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "course": { "type": "string" },
+        "sections": { "type": "array", "items": { "type": "integer" } },
+        "nodes": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "depends_on": { "type": "array", "items": { "type": "string" } },
+    "instructions": { "type": "string" },
+    "acceptance": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "claimed_by": { "type": "string" },
+    "pr": { "type": "string" }
+  }
+}

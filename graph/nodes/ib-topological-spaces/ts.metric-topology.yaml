@@ -1,0 +1,28 @@
+id: ts.metric-topology
+title: The topology of a metric space
+course: ib-topological-spaces
+section: 1
+kind: example
+status: draft
+minutes: 25
+verification: formal
+knowledge_points:
+- Define the metric topology and show the open balls form a basis
+- 'Show different metrics can give the same topology: Euclidean and sup on ℝⁿ; d and min(d, 1)'
+- Separate metric properties (boundedness) from topological ones
+requires:
+- node: ts.topology-def
+  reason: The metric topology is an instance of the definition.
+encompasses:
+- node: a2.metric-open-closed
+  weight: 0.3
+illuminates:
+- node: a2.norm-equivalence
+  note: Lipschitz-equivalent norms induce the same topology, so 'the' topology of ℝⁿ makes sense.
+anchors:
+- decl: Metric.isOpen_iff
+- decl: TopologicalSpace.IsTopologicalBasis
+covers:
+- ib-topological-spaces#topologies-from-metrics
+msc:
+- 54E35

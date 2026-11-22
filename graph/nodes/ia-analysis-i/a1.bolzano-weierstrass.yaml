@@ -1,0 +1,10 @@
+id: a1.bolzano-weierstrass
+title: Bolzano–Weierstrass in ℝ
+course: ia-analysis-i
+section: 1
+kind: theorem
+status: stub
+anchors:
+- decl: tendsto_subseq_of_bounded
+covers:
+- ia-analysis-i#bolzano-weierstrass

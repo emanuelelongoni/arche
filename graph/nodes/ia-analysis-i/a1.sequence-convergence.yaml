@@ -1,0 +1,11 @@
+id: a1.sequence-convergence
+title: Convergence of sequences in ℝ and ℂ
+course: ia-analysis-i
+section: 1
+kind: definition
+status: stub
+anchors:
+- decl: Filter.Tendsto
+covers:
+- ia-analysis-i#sequences-series
+- ia-analysis-i#algebra-of-limits

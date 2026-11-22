@@ -1,0 +1,10 @@
+id: a1.extreme-value
+title: Continuous functions on [a, b] are bounded and attain their bounds
+course: ia-analysis-i
+section: 2
+kind: theorem
+status: stub
+anchors:
+- decl: IsCompact.exists_isMaxOn
+covers:
+- ia-analysis-i#bounded-attains

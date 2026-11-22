@@ -1,0 +1,32 @@
+id: a2.metric-continuity
+title: Continuity between metric spaces
+course: ib-analysis-ii
+section: 3
+kind: theorem
+status: draft
+minutes: 30
+verification: formal
+knowledge_points:
+- 'State ε–δ continuity for f : (X, d) → (Y, e)'
+- Prove it is equivalent to sequential continuity and to 'preimages of open sets are open'
+- Extend uniform continuity to maps between metric spaces
+requires:
+- node: a2.metric-open-closed
+  reason: The open-set characterisation of continuity is stated in terms of open sets of X and Y.
+- node: a2.uniform-continuity
+  reason: Uniform continuity on ℝ is generalised verbatim to metric spaces here.
+encompasses:
+- node: a1.continuity
+  weight: 0.4
+- node: a2.metric-open-closed
+  weight: 0.4
+anchors:
+- decl: Metric.continuous_iff
+- decl: continuous_def
+- decl: Metric.uniformContinuous_iff
+lesson_notes:
+  npov: Note that metric spaces and continuous maps form a category (identities and composites are continuous).
+    Isomorphisms here are homeomorphisms, not isometries; that tension motivates Topological Spaces.
+msc:
+- 54E35
+- 54C05

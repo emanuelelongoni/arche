@@ -1,0 +1,29 @@
+id: a2.metric-examples
+title: Examples of metric spaces
+course: ib-analysis-ii
+section: 3
+kind: example
+status: draft
+minutes: 30
+verification: formal
+knowledge_points:
+- Prove the triangle inequality for the Euclidean metric on ℝⁿ from Cauchy–Schwarz
+- Work with the ℓ¹ and ℓ∞ metrics on ℝⁿ and the discrete metric on any set
+- Work with the sup metric on C[a, b]
+- 'Note for Lean: Mathlib''s metric on Fin n → ℝ is the sup metric; EuclideanSpace ℝ (Fin n) carries the
+  Euclidean one'
+requires:
+- node: a2.metric-space
+  reason: Each example is checked against the metric axioms.
+- node: vm.vector-spaces
+  reason: The Euclidean triangle inequality is derived from the Cauchy–Schwarz inequality.
+encompasses:
+- node: a2.metric-space
+  weight: 0.4
+anchors:
+- decl: EuclideanSpace
+- decl: PiLp
+covers:
+- ib-analysis-ii#metric-examples
+msc:
+- 54E35

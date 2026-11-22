@@ -1,0 +1,14 @@
+id: J0003
+kind: extract-nodes
+title: Analysis II, sections 1, 2, 4, 5 and 6
+status: open
+priority: 2
+scope: {course: ib-analysis-ii, sections: [1, 2, 4, 5, 6]}
+depends_on: [J0002]
+instructions: >-
+  Follow the density of the existing §3 nodes. Link §2's uniform-continuity items to a2.uniform-continuity
+  and a2.continuous-on-seq-compact rather than duplicating them. For §5, consider an npov lesson note on
+  completion as a universal construction; add a choice group only if the taught proof really changes.
+acceptance:
+  - python3 tools/validate.py exits 0 with no new warnings
+  - Coverage report shows 34/34 items of ib-analysis-ii covered by draft nodes

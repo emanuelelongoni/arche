@@ -1,0 +1,32 @@
+id: ts.heine-borel
+title: Compact subsets of ℝⁿ (Heine–Borel)
+course: ib-topological-spaces
+section: 3
+kind: theorem
+status: draft
+minutes: 30
+verification: formal
+knowledge_points:
+- Prove compact subsets of ℝⁿ are closed (Hausdorff) and bounded (cover by balls)
+- Prove closed bounded subsets of ℝⁿ are compact (closed in a compact box)
+requires:
+- node: ts.finite-products-compact
+  reason: A bounded set lies in a closed box, which is compact.
+- node: ts.closed-in-compact
+  reason: A closed subset of the box is then compact.
+- node: ts.compact-in-hausdorff-closed
+  reason: For the converse, compact subsets of the Hausdorff space ℝⁿ are closed.
+encompasses:
+- node: ts.closed-in-compact
+  weight: 0.5
+- node: ts.finite-products-compact
+  weight: 0.5
+- node: ts.interval-compact
+  weight: 0.4
+anchors:
+- decl: Metric.isCompact_iff_isClosed_bounded
+covers:
+- ib-topological-spaces#compact-subsets-euclidean
+msc:
+- 54D30
+- 54E45

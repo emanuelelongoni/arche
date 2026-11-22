@@ -1,0 +1,32 @@
+id: ts.finite-products-compact
+title: Finite products of compact spaces are compact
+course: ib-topological-spaces
+section: 3
+kind: theorem
+status: draft
+minutes: 25
+verification: formal
+knowledge_points:
+- Prove X × Y is compact when X and Y are, and extend to finite products
+- Conclude closed boxes [a₁, b₁] × ⋯ × [aₙ, bₙ] are compact
+requires:
+- node: ts.interval-compact
+  reason: Compactness of boxes is deduced from compactness of intervals.
+- choice: product-compactness-route
+  default: tube-lemma
+  options:
+    tube-lemma:
+    - node: ts.tube-lemma
+      reason: The classical proof applies the tube lemma at each point of X and covers X by finitely many
+        tubes.
+    universally-closed:
+    - node: ts.compact-universally-closed
+      reason: X × Y → Y → point is a composite of proper maps (the first is a pullback of X → point),
+        hence proper.
+anchors:
+- decl: IsCompact.prod
+covers:
+- ib-topological-spaces#finite-products-compact
+msc:
+- 54D30
+- 54B10

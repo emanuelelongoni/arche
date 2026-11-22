@@ -1,0 +1,34 @@
+id: a2.continuous-on-seq-compact
+title: Continuous functions on sequentially compact sets
+course: ib-analysis-ii
+section: 3
+kind: theorem
+status: draft
+minutes: 35
+verification: formal
+knowledge_points:
+- Prove the continuous image of a sequentially compact set is sequentially compact
+- Deduce that a real-valued continuous function on a sequentially compact set is bounded and attains its
+  bounds
+- 'Prove Heine–Cantor: continuous on a sequentially compact set implies uniformly continuous, by contradiction
+  with subsequences'
+requires:
+- node: a2.sequential-compactness
+  reason: Every proof here extracts convergent subsequences.
+- node: a2.metric-continuity
+  reason: The proofs use sequential continuity and the metric definition of uniform continuity.
+- node: a1.extreme-value
+  reason: The Analysis I theorem on [a, b] is the model case, and its proof is the same subsequence argument.
+encompasses:
+- node: a2.sequential-compactness
+  weight: 0.5
+- node: a1.extreme-value
+  weight: 0.6
+anchors:
+- decl: IsCompact.exists_isMaxOn
+- decl: IsCompact.uniformContinuousOn_of_continuous
+covers:
+- ib-analysis-ii#cont-seq-compact-bounded-uc
+msc:
+- 54E45
+- 26A15

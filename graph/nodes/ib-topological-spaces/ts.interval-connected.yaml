@@ -1,0 +1,30 @@
+id: ts.interval-connected
+title: Intervals are connected
+course: ib-topological-spaces
+section: 2
+kind: theorem
+status: draft
+minutes: 30
+verification: formal
+knowledge_points:
+- Prove [0, 1] is connected using the least upper bound property
+- Show the connected subsets of ℝ are exactly the intervals
+requires:
+- node: ts.connected
+  reason: The statement is connectedness of intervals.
+- node: ns.least-upper-bound
+  reason: The proof takes the supremum of the points reached by one part of a supposed separation.
+encompasses:
+- node: ns.least-upper-bound
+  weight: 0.4
+illuminates:
+- node: a1.ivt
+  note: The intermediate value theorem says a continuous image of an interval in ℝ is an interval.
+anchors:
+- decl: isConnected_Icc
+covers:
+- ib-topological-spaces#connected-examples
+off_platform: Which properties of ℝ did the proof that [0, 1] is connected actually use? Find a totally
+  ordered set, with its order topology, in which the closed 'intervals' are not connected.
+msc:
+- 54D05

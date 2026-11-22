@@ -1,0 +1,12 @@
+id: J0007
+kind: anchor
+title: First Lean build of the anchors and lake-manifest.json
+status: open
+priority: 1
+scope: {}
+instructions: >-
+  Run the anchors CI job (or cd lean && lake update && lake exe cache get && lake build locally).
+  Commit lean/lake-manifest.json. Fix any anchor that fails to elaborate by finding the current name.
+acceptance:
+  - lake build succeeds in CI
+  - lean/lake-manifest.json is committed

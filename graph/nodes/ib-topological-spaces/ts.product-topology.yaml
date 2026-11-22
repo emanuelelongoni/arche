@@ -1,0 +1,34 @@
+id: ts.product-topology
+title: The product topology
+course: ib-topological-spaces
+section: 1
+kind: definition
+status: draft
+minutes: 30
+verification: formal
+knowledge_points:
+- Define the product topology on X × Y with open rectangles as a basis
+- Show the projections are continuous, and (f₁, f₂) is continuous iff f₁ and f₂ are
+- Show the product topology on ℝ × ℝ is the Euclidean topology
+requires:
+- node: ts.metric-topology
+  reason: The product topology on ℝ × ℝ is compared with the metric topology, using bases.
+- node: ts.convergence-continuity
+  reason: The defining property is continuity of the projections and of maps into the product.
+- choice: constructions-route
+  default: concrete
+  options:
+    concrete: []
+    initial-final:
+    - node: ts.initial-final-topologies
+      reason: On this route the product topology is defined as the initial topology for the two projections.
+anchors:
+- decl: instTopologicalSpaceProd
+- decl: continuous_fst
+- decl: continuous_snd
+- decl: Continuous.prodMk
+- decl: isOpen_prod_iff
+covers:
+- ib-topological-spaces#product
+msc:
+- 54B10

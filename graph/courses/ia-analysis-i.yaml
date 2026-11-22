@@ -1,0 +1,59 @@
+id: ia-analysis-i
+title: Analysis I
+prefix: a1
+part: IA
+term: Lent
+lectures: 24
+status: active
+source: cam-schedules-2026-27
+notes: Items paraphrase the 2026–27 Schedules. Only the nodes the pilot slice needs exist yet, as stubs (job J0002).
+sections:
+  - n: 1
+    title: Limits and convergence
+    lectures: 6
+    items:
+      - {id: sequences-series, text: Sequences and series in ℝ and ℂ}
+      - {id: algebra-of-limits, text: "Sums, products and quotients of convergent sequences and series"}
+      - {id: absolute-convergence, text: Absolute convergence implies convergence}
+      - {id: bolzano-weierstrass, text: The Bolzano–Weierstrass theorem and applications}
+      - {id: cauchy-principle, text: The general principle of convergence}
+      - {id: convergence-tests, text: "Comparison, ratio and alternating series tests"}
+  - n: 2
+    title: Continuity
+    lectures: 3
+    items:
+      - {id: continuity-def, text: Continuity of real and complex functions on subsets of ℝ and ℂ}
+      - {id: ivt, text: The intermediate value theorem}
+      - {id: bounded-attains, text: A continuous function on a closed bounded interval is bounded and attains its bounds}
+  - n: 3
+    title: Differentiability
+    lectures: 5
+    items:
+      - {id: differentiability, text: Differentiability of functions ℝ → ℝ}
+      - {id: sum-product-rules, text: Derivatives of sums and products}
+      - {id: chain-rule, text: The chain rule}
+      - {id: inverse-derivative, text: Derivative of an inverse function}
+      - {id: rolle, text: Rolle's theorem}
+      - {id: mvt, text: The mean value theorem}
+      - {id: inverse-function-1d, text: The one-dimensional inverse function theorem}
+      - {id: taylor-lagrange, text: Taylor's theorem with Lagrange's remainder}
+      - {id: complex-differentiation, text: Complex differentiation}
+  - n: 4
+    title: Power series
+    lectures: 4
+    items:
+      - {id: radius-of-convergence, text: Complex power series and the radius of convergence}
+      - {id: exp-trig-hyperbolic, text: "Exponential, trigonometric and hyperbolic functions and their relations"}
+      - {id: power-series-differentiable, text: "Direct proof that a power series is differentiable inside its circle of convergence", starred: true}
+  - n: 5
+    title: Integration
+    lectures: 6
+    items:
+      - {id: riemann-integral, text: Definition and basic properties of the Riemann integral}
+      - {id: non-integrable-example, text: A function that is not Riemann integrable}
+      - {id: integrability-monotone-piecewise, text: Integrability of monotonic and piecewise continuous functions}
+      - {id: ftc, text: The fundamental theorem of calculus}
+      - {id: differentiation-indefinite, text: Differentiation of indefinite integrals}
+      - {id: integration-by-parts, text: Integration by parts}
+      - {id: taylor-integral-remainder, text: The integral form of the remainder in Taylor's theorem}
+      - {id: improper-integrals, text: Improper integrals}

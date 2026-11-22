@@ -1,0 +1,33 @@
+id: ts.quotient-topology
+title: The quotient topology
+course: ib-topological-spaces
+section: 1
+kind: definition
+status: draft
+minutes: 35
+verification: formal
+knowledge_points:
+- 'For a surjection q : X → Y, define V open ⟺ q⁻¹(V) open'
+- 'Build gluings: [0, 1] with 0 ~ 1 as the circle; the torus from a square'
+- 'Use: a continuous map out of X that is constant on fibres factors continuously through Y'
+- See that a quotient of a Hausdorff space need not be Hausdorff
+requires:
+- node: ts.hausdorff
+  reason: One knowledge point shows Hausdorffness is not preserved by quotients.
+- node: ns.equivalence-relations
+  reason: Quotient spaces are formed from quotient sets X/~.
+- choice: constructions-route
+  default: concrete
+  options:
+    concrete: []
+    initial-final:
+    - node: ts.initial-final-topologies
+      reason: On this route the quotient topology is defined as the topology coinduced by q.
+anchors:
+- decl: instTopologicalSpaceQuotient
+- decl: Topology.IsQuotientMap
+- decl: continuous_coinduced_dom
+covers:
+- ib-topological-spaces#quotient
+msc:
+- 54B15

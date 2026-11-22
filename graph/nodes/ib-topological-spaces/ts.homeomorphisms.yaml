@@ -1,0 +1,25 @@
+id: ts.homeomorphisms
+title: Homeomorphisms and topological properties
+course: ib-topological-spaces
+section: 1
+kind: definition
+status: draft
+minutes: 30
+verification: partial
+knowledge_points:
+- Define homeomorphisms; show (0, 1) ≅ ℝ and an open ball in ℝⁿ ≅ ℝⁿ
+- 'Show a continuous bijection need not be a homeomorphism: [0, 1) → S¹'
+- Distinguish topological properties (Hausdorff) from non-topological ones (boundedness, completeness)
+requires:
+- node: ts.hausdorff
+  reason: Being Hausdorff is the first property shown to be invariant under homeomorphism.
+anchors:
+- decl: Homeomorph
+covers:
+- ib-topological-spaces#homeomorphisms
+- ib-topological-spaces#topological-properties
+lesson_notes:
+  npov: Homeomorphisms are the isomorphisms of Top, and a topological property is one invariant under
+    isomorphism. Say it in those words.
+msc:
+- 54C05

@@ -1,0 +1,24 @@
+id: a2.metric-open-closed
+title: Open and closed sets in metric spaces
+course: ib-analysis-ii
+section: 3
+kind: definition
+status: draft
+minutes: 35
+verification: formal
+knowledge_points:
+- Define open balls and open sets; show open balls are open
+- Show arbitrary unions and finite intersections of open sets are open, and why infinite intersections
+  fail
+- Prove a set is closed iff it contains the limits of its convergent sequences
+requires:
+- node: a2.metric-limits
+  reason: The sequential characterisation of closed sets uses limits in X.
+anchors:
+- decl: Metric.ball
+- decl: Metric.isOpen_iff
+- decl: IsClosed.mem_of_tendsto
+covers:
+- ib-analysis-ii#open-closed
+msc:
+- 54E35

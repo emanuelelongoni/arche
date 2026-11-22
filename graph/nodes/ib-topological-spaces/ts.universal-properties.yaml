@@ -1,0 +1,49 @@
+id: ts.universal-properties
+title: Universal properties of subspace, quotient and product
+course: ib-topological-spaces
+section: 1
+kind: theorem
+status: draft
+minutes: 30
+verification: formal
+knowledge_points:
+- State the universal property of each of the three constructions
+- Prove each topology is the unique one with its property
+- Prove continuity without opening sets, e.g. the swap map X × Y → Y × X is a homeomorphism
+requires:
+- node: ts.subspace-topology
+  reason: Its universal property is one of the three stated.
+- node: ts.quotient-topology
+  reason: Its universal property is one of the three stated.
+- node: ts.product-topology
+  reason: Its universal property is one of the three stated.
+- choice: up-framing
+  default: elementwise
+  options:
+    elementwise: []
+    categorical:
+    - node: ct.universal-property
+      reason: On this route the three are presented as a limit (product), an equaliser-like subobject
+        and a coequaliser-like quotient in Top.
+encompasses:
+- node: ts.subspace-topology
+  weight: 0.4
+- node: ts.quotient-topology
+  weight: 0.4
+- node: ts.product-topology
+  weight: 0.4
+illuminates:
+- node: ct.discrete-indiscrete-adjoints
+  note: Because forget has both adjoints, it preserves limits and colimits, which is why underlying sets
+    of products and quotients are the set-level ones.
+anchors:
+- decl: continuous_induced_rng
+- decl: continuous_coinduced_dom
+- decl: Topology.IsQuotientMap.continuous_iff
+- decl: Homeomorph.prodComm
+covers:
+- ib-topological-spaces#universal-properties
+msc:
+- 54B10
+- 54B15
+- 18A30

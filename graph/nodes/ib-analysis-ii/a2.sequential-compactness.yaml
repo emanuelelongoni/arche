@@ -1,0 +1,22 @@
+id: a2.sequential-compactness
+title: Sequential compactness
+course: ib-analysis-ii
+section: 3
+kind: definition
+status: draft
+minutes: 30
+verification: formal
+knowledge_points:
+- 'Define sequential compactness: every sequence in K has a subsequence converging in K'
+- Prove a sequentially compact set is closed and bounded
+- 'Decide examples: [0, 1], (0, 1], ℝ, the closed unit ball of C[0, 1] with the sup metric'
+requires:
+- node: a2.metric-open-closed
+  reason: '"Sequentially compact implies closed" uses the sequential characterisation of closed sets.'
+anchors:
+- decl: IsSeqCompact
+covers:
+- ib-analysis-ii#seq-compactness
+msc:
+- 54D30
+- 54E45

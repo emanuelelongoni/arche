@@ -1,0 +1,26 @@
+id: a2.metric-space
+title: Metric spaces
+course: ib-analysis-ii
+section: 3
+kind: definition
+status: draft
+minutes: 30
+verification: formal
+knowledge_points:
+- 'State the axioms: positivity, symmetry, triangle inequality'
+- Check the axioms for a proposed metric, e.g. d(x, y) = |x − y| / (1 + |x − y|) on ℝ
+- Derive and use the reverse triangle inequality |d(x, z) − d(y, z)| ≤ d(x, y)
+requires:
+- node: ns.sets-functions
+  reason: A metric is a function d from X × X to ℝ, so the learner needs functions on product sets.
+anchors:
+- decl: MetricSpace
+covers:
+- ib-analysis-ii#metric-def
+lesson_notes:
+  npov: 'One sentence of Lawvere: a metric space is a category enriched in ([0, ∞], ≥, +), and the triangle
+    inequality is composition. Illustration only; nothing builds on it.'
+off_platform: Which of the three axioms could you drop and still have a useful notion of 'distance'? Look
+  up quasi-metrics and pseudometrics and decide where each would be the natural tool.
+msc:
+- 54E35

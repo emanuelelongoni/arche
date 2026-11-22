@@ -1,0 +1,29 @@
+id: ts.path-connected
+title: Path-connected implies connected
+course: ib-topological-spaces
+section: 2
+kind: theorem
+status: draft
+minutes: 30
+verification: partial
+knowledge_points:
+- Prove a path-connected space is connected
+- Show the topologist's sine curve is connected but not path-connected
+- Use path-connectedness to show ℝ is not homeomorphic to ℝ² (remove a point)
+requires:
+- node: a2.path-connected
+  reason: Path-connectedness was defined in Analysis II.
+- node: ts.connected-image
+  reason: The proof maps [0, 1] into the space along a path and uses that images of connected sets are
+    connected.
+encompasses:
+- node: ts.interval-connected
+  weight: 0.4
+- node: ts.connected-image
+  weight: 0.5
+anchors:
+- decl: IsPathConnected.isConnected
+covers:
+- ib-topological-spaces#path-connectedness-relation
+msc:
+- 54D05

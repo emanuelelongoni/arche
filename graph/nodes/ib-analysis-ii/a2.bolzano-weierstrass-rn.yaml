@@ -1,0 +1,27 @@
+id: a2.bolzano-weierstrass-rn
+title: Bolzano–Weierstrass in ℝⁿ
+course: ib-analysis-ii
+section: 3
+kind: theorem
+status: draft
+minutes: 25
+verification: formal
+knowledge_points:
+- Prove bounded sequences in ℝⁿ have convergent subsequences by extracting coordinate by coordinate
+- Conclude closed bounded subsets of ℝⁿ are sequentially compact
+requires:
+- node: a1.bolzano-weierstrass
+  reason: The one-dimensional theorem is applied in each coordinate in turn.
+- node: a2.sequential-compactness
+  reason: The conclusion is sequential compactness of closed bounded sets.
+encompasses:
+- node: a1.bolzano-weierstrass
+  weight: 0.6
+- node: a2.sequential-compactness
+  weight: 0.4
+anchors:
+- decl: tendsto_subseq_of_bounded
+covers:
+- ib-analysis-ii#bolzano-weierstrass
+msc:
+- 54E45

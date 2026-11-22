@@ -1,0 +1,22 @@
+id: ts.tube-lemma
+title: The tube lemma
+course: ib-topological-spaces
+section: 3
+kind: theorem
+status: draft
+minutes: 25
+verification: formal
+knowledge_points:
+- 'State it: if Y is compact and N ⊆ X × Y is open with {x} × Y ⊆ N, then U × Y ⊆ N for some open U ∋
+  x'
+- Prove it by covering {x} × Y with open rectangles and taking a finite subcover
+requires:
+- node: ts.compact-def
+  reason: The proof takes a finite subcover of {x} × Y.
+- node: ts.product-topology
+  reason: The cover is by basic open rectangles of the product topology.
+anchors:
+- decl: generalized_tube_lemma
+msc:
+- 54D30
+- 54B10

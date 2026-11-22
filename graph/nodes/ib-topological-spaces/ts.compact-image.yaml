@@ -1,0 +1,24 @@
+id: ts.compact-image
+title: Continuous images of compact sets
+course: ib-topological-spaces
+section: 3
+kind: theorem
+status: draft
+minutes: 20
+verification: formal
+knowledge_points:
+- Prove a continuous image of a compact set is compact
+- Deduce a continuous real function on a compact space is bounded and attains its bounds
+requires:
+- node: ts.compact-def
+  reason: The proof pulls an open cover back along the map.
+illuminates:
+- node: a1.extreme-value
+  note: The Analysis I extreme value theorem is the case of [a, b].
+anchors:
+- decl: IsCompact.image
+- decl: IsCompact.exists_isMaxOn
+covers:
+- ib-topological-spaces#continuous-image-compact
+msc:
+- 54D30

@@ -1,0 +1,15 @@
+id: ns.sets-functions
+title: Sets and functions
+course: ia-numbers-and-sets
+section: 2
+kind: definition
+status: stub
+anchors:
+- decl: Function.Injective
+  library: lean-core
+- decl: Function.Surjective
+  library: lean-core
+- decl: Function.Bijective
+covers:
+- ia-numbers-and-sets#set-operations
+- ia-numbers-and-sets#functions-inj-surj-bij

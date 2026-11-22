@@ -1,0 +1,24 @@
+id: ts.open-connected-path-connected
+title: Open connected subsets of ℝⁿ are path-connected
+course: ib-topological-spaces
+section: 2
+kind: theorem
+status: draft
+minutes: 25
+verification: formal
+knowledge_points:
+- Prove the set of points reachable by paths from a fixed point is open and closed
+- Conclude open connected subsets of ℝⁿ are path-connected
+- 'Apply: a function with zero derivative on an open connected set is constant'
+requires:
+- node: ts.path-connected
+  reason: The theorem is a partial converse to path-connected implies connected.
+encompasses:
+- node: ts.connected
+  weight: 0.4
+anchors:
+- decl: IsOpen.isConnected_iff_isPathConnected
+covers:
+- ib-topological-spaces#open-connected-euclidean
+msc:
+- 54D05

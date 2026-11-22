@@ -1,0 +1,24 @@
+id: ct.categories
+title: Categories
+course: x-categories
+section: 1
+kind: definition
+status: draft
+minutes: 35
+verification: formal
+only_in:
+- npov
+knowledge_points:
+- 'State the definition: objects, morphisms, composition, identities, associativity and unit laws'
+- 'Recognise examples: Set; metric spaces with continuous maps; Top; a poset as a category; a group as
+  a one-object category'
+- Define isomorphisms and identify them in each example (bijections, homeomorphisms, equal elements, all
+  morphisms)
+requires:
+- node: a2.metric-continuity
+  reason: Metric spaces with continuous maps are the motivating example, already met in Analysis II.
+anchors:
+- decl: CategoryTheory.Category
+- decl: TopCat
+msc:
+- 18A05

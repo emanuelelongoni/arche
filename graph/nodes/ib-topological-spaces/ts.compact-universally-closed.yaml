@@ -1,0 +1,37 @@
+id: ts.compact-universally-closed
+title: Compactness as universal closedness
+course: ib-topological-spaces
+section: 3
+kind: theorem
+status: draft
+minutes: 40
+verification: formal
+only_in:
+- npov
+knowledge_points:
+- Prove that if X is compact then the projection X × Y → Y is closed for every space Y
+- 'State the converse (Kuratowski–Mrówka): this characterises compactness; equivalently X → point is a
+  proper map'
+- Prove proper maps are closed under composition and under pullback along any map
+requires:
+- node: ts.compact-def
+  reason: The theorem is a characterisation of compactness.
+- node: ts.product-topology
+  reason: The projections X × Y → Y are the maps shown to be closed.
+- node: ct.universal-property
+  reason: Stability under pullback is phrased with the product as a pullback over a point.
+anchors:
+- decl: isClosedMap_snd_of_compactSpace
+- decl: isProperMap_const_iff
+- decl: IsProperMap.comp
+- decl: isProperMap_iff_universally_closed
+lesson_notes:
+  npov: 'Be honest that proving the projection is closed is a tube-lemma argument in disguise. What the
+    nPOV buys is the packaging: X × Y → Y → point composes two proper maps, so finite products come free,
+    and so do later results on fibre bundles.'
+off_platform: In algebraic geometry, a scheme is 'complete' when X → Spec k is universally closed. Find
+  out why Grothendieck took this property, rather than an open-cover condition, as the right notion of
+  compactness there.
+msc:
+- 54C10
+- 54D30

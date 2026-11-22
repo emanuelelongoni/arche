@@ -1,0 +1,17 @@
+id: J0001
+kind: extract-nodes
+title: Numbers and Sets, all sections
+status: open
+priority: 2
+scope: {course: ia-numbers-and-sets, sections: [1, 2, 3, 4, 5, 6]}
+instructions: >-
+  Write draft nodes covering every item of the course file. Replace the stubs ns.sets-functions,
+  ns.equivalence-relations and ns.least-upper-bound in place (same ids, status draft) so existing
+  edges keep working. Where the npov route would teach something differently (functions as morphisms
+  of Set, quotient sets by their universal property), add lesson_notes rather than new nodes unless a
+  real choice group is needed.
+acceptance:
+  - python3 tools/validate.py exits 0 with no new warnings
+  - Coverage report shows 38/38 items of ia-numbers-and-sets covered by draft nodes
+  - No ns.* node has status stub
+  - Every anchor elaborates in lake build (CI job anchors)

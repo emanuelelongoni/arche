@@ -1,0 +1,20 @@
+id: ts.closed-in-compact
+title: Closed subsets of compact spaces are compact
+course: ib-topological-spaces
+section: 3
+kind: theorem
+status: draft
+minutes: 15
+verification: formal
+knowledge_points:
+- Prove it by adding the complement to an open cover
+- Use it to show closed subsets of [0, 1] are compact
+requires:
+- node: ts.interval-compact
+  reason: The standard application is to closed subsets of [0, 1].
+anchors:
+- decl: IsCompact.of_isClosed_subset
+covers:
+- ib-topological-spaces#closed-in-compact
+msc:
+- 54D30

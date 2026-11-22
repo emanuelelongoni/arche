@@ -1,0 +1,15 @@
+id: npov
+title: nPOV (higher-structures point of view, undergraduate strength)
+description: >-
+  Follows the nLab's point of view at the level the IB courses allow: universal property first,
+  construction second; maps before elements; topologies on a set as a complete lattice in which
+  induced and coinduced topologies are adjoint; compactness as universal closedness. Adds a small
+  supplementary course (x-categories) to the route. See spec/STYLE.md.
+references:
+  - https://ncatlab.org/nlab/show/nPOV
+  - "T.-D. Bradley, T. Bryson, J. Terilla, Topology: A Categorical Approach"
+  - E. Riehl, Category Theory in Context
+choices:
+  constructions-route: initial-final
+  up-framing: categorical
+  product-compactness-route: universally-closed

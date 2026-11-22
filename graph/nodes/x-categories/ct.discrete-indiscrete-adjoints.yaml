@@ -1,0 +1,28 @@
+id: ct.discrete-indiscrete-adjoints
+title: Discrete ⊣ forget ⊣ indiscrete
+course: x-categories
+section: 2
+kind: theorem
+status: draft
+minutes: 30
+verification: formal
+only_in:
+- npov
+knowledge_points:
+- Prove every function out of a discrete space and every function into an indiscrete space is continuous,
+  and read these as adjunctions with the forgetful functor
+- Deduce the forgetful functor Top → Set preserves limits and colimits, so underlying sets of products
+  and quotients are the set-level ones
+requires:
+- node: ct.galois-connections
+  reason: The adjunctions are compared with Galois connections before being stated as adjunctions of categories.
+- node: ct.universal-property
+  reason: Preservation of limits and colimits is stated with universal properties.
+- node: ts.convergence-continuity
+  reason: The adjunctions are statements about which maps are continuous.
+anchors:
+- decl: TopCat.adj₁
+- decl: TopCat.adj₂
+msc:
+- 18A40
+- 54A05

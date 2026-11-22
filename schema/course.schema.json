@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://arche.academy/schema/course.schema.json",
+  "title": "Course (coverage spec)",
+  "description": "A course is a coverage spec: the sections and items that nodes must cover. It says what must be in, not the order of teaching. See spec/SCHEMA.md.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "title", "prefix", "part", "status", "source", "sections"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+    "title": { "type": "string" },
+    "prefix": { "type": "string", "pattern": "^[a-z0-9]+$", "description": "Node ids in this course start with '<prefix>.'" },
+    "part": { "enum": ["foundations", "IA", "IB", "II", "III", "graduate", "supplementary"] },
+    "term": { "enum": ["Michaelmas", "Lent", "Easter"] },
+    "lectures": { "type": "integer", "minimum": 0 },
+    "status": { "enum": ["stub", "active"] },
+    "source": { "type": "string", "description": "Key into README 'Sources', e.g. cam-schedules-2026-27 or supplementary" },
+    "stated_prerequisites": { "type": "array", "items": { "type": "string" } },
+    "notes": { "type": "string" },
+    "sections": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["n", "title", "items"],
+        "properties": {
+          "n": { "type": "integer", "minimum": 1 },
+          "title": { "type": "string" },
+          "lectures": { "type": "integer", "minimum": 0 },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["id", "text"],
+              "properties": {
+                "id": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+                "text": { "type": "string" },
+                "starred": { "type": "boolean", "description": "Non-examinable in the source syllabus" }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

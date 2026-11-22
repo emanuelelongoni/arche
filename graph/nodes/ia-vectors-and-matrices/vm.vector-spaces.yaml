@@ -1,0 +1,8 @@
+id: vm.vector-spaces
+title: Real vector spaces, linear maps and the Cauchy–Schwarz inequality
+course: ia-vectors-and-matrices
+kind: concept
+status: stub
+anchors:
+- decl: Module
+- decl: LinearMap

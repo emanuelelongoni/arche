@@ -1,0 +1,31 @@
+id: ts.convergence-continuity
+title: Convergence and continuity in topological spaces
+course: ib-topological-spaces
+section: 1
+kind: definition
+status: draft
+minutes: 35
+verification: formal
+knowledge_points:
+- Define convergence of sequences and see limits need not be unique (indiscrete, cofinite)
+- Define continuity as 'preimages of open sets are open', equivalently of closed sets
+- Show this agrees with ε–δ continuity for metric spaces
+- See why sequences don't detect continuity in general (preview of filters and nets)
+requires:
+- node: ts.neighbourhoods-closed
+  reason: Convergence is defined by neighbourhoods, and continuity is restated with closed sets.
+- node: ts.topology-examples
+  reason: Non-unique limits are exhibited in the indiscrete and cofinite topologies.
+- node: a2.metric-continuity
+  reason: The topological definition is checked against the metric one.
+anchors:
+- decl: Continuous
+- decl: continuous_def
+- decl: Filter.Tendsto
+covers:
+- ib-topological-spaces#convergence-continuity
+lesson_notes:
+  npov: 'Note at once that identities and composites of continuous maps are continuous: Top is a category,
+    and this is its morphisms.'
+msc:
+- 54C05

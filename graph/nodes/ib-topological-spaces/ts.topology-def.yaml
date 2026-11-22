@@ -1,0 +1,25 @@
+id: ts.topology-def
+title: Topological spaces
+course: ib-topological-spaces
+section: 1
+kind: definition
+status: draft
+minutes: 30
+verification: formal
+knowledge_points:
+- 'State the axioms: ∅ and X open; arbitrary unions and finite intersections of open sets are open'
+- See that the open sets of a metric space satisfy exactly these axioms, and that the metric is forgotten
+- Compare topologies on one set (finer, coarser) and see they form a complete lattice
+requires:
+- node: a2.metric-open-closed
+  reason: The axioms abstract the properties of metric open sets proved in Analysis II.
+anchors:
+- decl: TopologicalSpace
+- decl: IsOpen
+covers:
+- ib-topological-spaces#topology-def
+lesson_notes:
+  npov: 'Introduce the lattice of topologies on X here, not later: it is where induced and coinduced topologies
+    will turn out to be adjoint.'
+msc:
+- 54A05

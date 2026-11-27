@@ -16,7 +16,7 @@ Archē stops being a graph of topics on routes through university courses. It be
 
 ### Decided by the owner
 
-1. **A resource for the world, with many points of view.** The global `classical`/`npov` switch and `only_in` go away. A viewpoint is whatever the learner's current knowledge lets them see, as in Thurston's list of ways to think about the derivative.
+1. **A resource for the world, with many points of view.** The global `classical`/`npov` switch goes away. A viewpoint is whatever the learner's current knowledge lets them see, as in Thurston's list of ways to think about the derivative.
 2. **New stack for new work:** Next.js, Vercel and Neon.
 3. **Statements, proofs and techniques are separate things,** each with its own material and progress. A topic presents many techniques; each technique is mastered across several topics. The balance of directness and variety matters.
 4. **Many proofs per theorem,** found with AI where needed and simplified over time. Contributions to research in suitable venues are welcome.
@@ -56,6 +56,7 @@ These came up in the replies and the owner has not yet said yes or no.
 - **Analogy links carry an explicit dictionary** (normal subgroup ↔ ideal), so they can become formal translations later.
 - **Interview mathematicians with AI** to capture oral culture as attributed views and rationales.
 - **"Abstraction after several instances"** is a default suggestion only. The owner rejected it as a gate.
+- **`only_in` goes away** along with the viewpoint switch. This is Claude's inference; the owner confirmed only that the switch goes.
 
 ### Open questions for the owner
 
@@ -78,7 +79,7 @@ Noticed, not changed:
 
 - **GitHub Pages and DNS setup: on hold.** The site moves to Vercel. The `site` workflow on `main` still fails at its last step because Pages was never enabled.
 - **J0006 (human review of the gold-standard slice): on hold.** The node shape is changing.
-- **J0001–J0005: obsolete.** All are scoped to Cambridge courses. If a nightly agent task exists on the owner's other account, it should stay paused.
+- **J0001–J0005: obsolete.** All are scoped to Cambridge courses. If a nightly agent task exists, it should stay paused.
 - **The 47 draft nodes are raw material.** Each mixes a statement with one proof and will need re-cutting.
 - **Courses, coverage items, course-prefixed ids, viewpoints, choice groups and `only_in`** all belong to the old model.
 - **`GLOSSARY.md` needs resetting.** It defines node, viewpoint and choice group, and puts "lesson" on its avoid list.
@@ -129,7 +130,7 @@ Everything cited in the transcript was checked by web search on 27 November 2026
 
 ## Part 2: Transcript
 
-Interim progress notes are left out. Headings inside Claude's replies are demoted to fit this document.
+Interim progress notes are left out. Headings inside Claude's replies are demoted to fit this document. "[…]" marks a short remark about user accounts that was trimmed.
 
 ### 1. Owner
 
@@ -145,7 +146,7 @@ The repo is in good shape but has stood still since 22 November. You built it al
    - Follow "Deployment: what the owner must do, once" in `docs/specs/site-v0.md`. It covers verifying the domain, setting Settings → Pages → Source to GitHub Actions, adding the custom domain, and the DNS records.
    - Then re-run the [failed run](https://github.com/emanuelelongoni/arche/actions/runs/45058550950), or push to `main`. Starting the workflow by hand won't deploy, because the deploy steps only run on a push.
    - I didn't check whether arche.academy resolves today.
-2. **The nightly agent loop doesn't seem to be running.** The README says a scheduled Claude Code task takes the next job each night. This account has no scheduled tasks. One could exist on the `emanuelelongoni` account, but nothing has come out of it in 5 days, so it's either not set up or not working.
+2. **The nightly agent loop doesn't seem to be running.** The README says a scheduled Claude Code task takes the next job each night. I found no scheduled tasks […], and nothing has come out of one in 5 days, so it's either not set up or not working.
 3. **J0006 is your review job, and it's top priority.** You're meant to review the gold-standard slice (Topological Spaces, Analysis II §3 and the category-theory nodes). You set `status: reviewed` on nodes you accept and correct `spec/STYLE.md` where you disagree. No node is `reviewed` yet. This matters because the agents use those nodes as their model of quality.
 
 #### What the repo is
@@ -270,7 +271,7 @@ These are my additions; push back freely.
 #### What this does to the repo
 
 - **Hold off on the Pages/DNS setup and the J0006 review.** The stack and the node shape are both changing, so this reverses my earlier list.
-- **Jobs J0001–J0005 are obsolete.** They are all scoped to Cambridge courses. If a nightly task exists on your other account, keep it paused.
+- **Jobs J0001–J0005 are obsolete.** They are all scoped to Cambridge courses. If a nightly task exists […], keep it paused.
 - **The 47 draft nodes are raw material.** Each mixes a statement with one proof and will need re-cutting.
 - **Something must replace coverage.** Without courses, nothing says what's missing. I don't have a proposal yet.
 - **The glossary needs resetting.** It defines node, viewpoint and choice group, and bans "lesson".
